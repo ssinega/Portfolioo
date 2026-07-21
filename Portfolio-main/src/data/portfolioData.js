@@ -32,10 +32,7 @@ export const heroContent = {
   subtitle:
     "I build data-driven, AI-enabled, and cloud-ready solutions spanning analytics, automation, and Salesforce.",
   ctaPrimary: { text: "View My Work", href: "#projects" },
-  ctaSecondary: {
-    text: "Contact Me",
-    href: "mailto:sinegas1652@gmail.com?subject=Portfolio Inquiry&body=Hello Sinega,%0D%0A%0D%0AI came across your portfolio and would like to discuss an opportunity with you.%0D%0A%0D%0ALooking forward to hearing from you.%0D%0ABest Regards,",
-  },
+  ctaSecondary: { text: "Contact Me", href: "#contact" },
   ctaResume: { text: "Download Resume", href: "/Resume.pdf" },
 };
 
