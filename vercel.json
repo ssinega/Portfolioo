@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "npm --prefix Portfolio-main run build",
+  "outputDirectory": "Portfolio-main/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
