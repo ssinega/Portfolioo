@@ -14,32 +14,13 @@ const JavaIcon = () => (
   </div>
 );
 
-const SpringBootIcon = () => (
+const SalesforceIcon = () => (
   <div className="flex flex-col items-center gap-2">
-    <svg className="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 128 128">
-      <path fill="#6DB33F" d="M116.452 6.643a59.104 59.104 0 01-6.837 12.136A64.249 64.249 0 0064.205-.026C28.984-.026 0 28.958 0 64.179c0 35.22 28.984 64.205 64.205 64.205 35.221 0 64.179-28.985 64.179-64.205 0-10.632-2.624-20.672-7.26-29.508a59.03 59.03 0 01-4.672-8.028zm-53.478 99.75c-23.407 0-42.392-18.985-42.392-42.393 0-23.407 18.985-42.392 42.392-42.392 4.016 0 7.907.563 11.591 1.607l-4.756 8.229a34.498 34.498 0 00-6.835-.683c-19.152 0-34.673 15.521-34.673 34.673 0 19.153 15.521 34.674 34.673 34.674 12.322 0 23.146-6.443 29.29-16.146l7.621 4.397c-7.966 12.614-22.043 20.984-37.911 20.034z"/>
-      <path fill="#6DB33F" d="M96.118 56.392l-32.22 18.604-8.816-15.273 32.221-18.604z"/>
+    <svg className="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#1798c1" d="M64 0C28.651 0 0 28.651 0 64s28.651 64 64 64 64-28.651 64-64S99.349 0 64 0zm28.96 80.667c-1.407 6.561-4.9 12.344-9.932 16.672-4.345 3.716-9.63 6.298-15.421 7.019-5.792.72-11.593-.123-17.012-2.386-5.093-2.133-9.675-5.467-13.103-9.6-3.668-4.383-6.285-9.45-7.472-14.85-1.188-5.402-.822-11.02 1.046-16.221 1.894-5.245 5.106-9.866 9.289-13.389 4.233-3.566 9.316-6.01 14.74-6.874a35.635 35.635 0 0118.68 1.1c5.602 1.69 10.504 4.919 14.31 9.066 3.862 4.206 6.807 9.36 8.09 14.951 1.281 5.588.777 11.35-1.59 16.861z"/>
+      <path fill="#fff" d="M47.168 41.267c-5.757 0-10.421 4.675-10.421 10.442 0 5.768 4.664 10.443 10.421 10.443 5.768 0 10.443-4.675 10.443-10.443 0-5.767-4.675-10.442-10.443-10.442zm33.032 0c-5.757 0-10.421 4.675-10.421 10.442 0 5.768 4.664 10.443 10.421 10.443 5.768 0 10.443-4.675 10.443-10.443 0-5.767-4.675-10.442-10.443-10.442zM48.8 66.327h31.18c1.852 0 3.352 1.5 3.352 3.352v2.259c0 1.852-1.5 3.351-3.352 3.351H48.8c-1.852 0-3.351-1.499-3.351-3.351v-2.259c0-1.852 1.499-3.352 3.351-3.352z"/>
     </svg>
-    <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Spring Boot</span>
-  </div>
-);
-
-const MernIcon = () => (
-  <div className="flex flex-col items-center gap-2">
-    <svg className="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 128 128">
-      {/* Central React Atom */}
-      <g stroke="#00d8ff" strokeWidth="4.5" fill="none" transform="translate(10, 10)">
-        <ellipse cx="54" cy="54" rx="16" ry="46" transform="rotate(30 54 54)" />
-        <ellipse cx="54" cy="54" rx="16" ry="46" transform="rotate(90 54 54)" />
-        <ellipse cx="54" cy="54" rx="16" ry="46" transform="rotate(150 54 54)" />
-        <circle cx="54" cy="54" r="7" fill="#00d8ff" />
-      </g>
-      {/* MongoDB Leaf overlap overlay in bottom left */}
-      <path fill="#439934" d="M36 84c-3-6-4-15 0-22 3 7 9 10 10 15 2 1.5 1 3-2 5l-8 2zm4-25c2 4 4 11 0 16-1-5-6-8-7-12-2-1-1-3 2-4l5 0z" opacity="0.9" />
-      {/* Node.js Hexagon in top right */}
-      <path fill="#339933" d="M98 32l-12-7-12 7v14l12 7 12-7V32zm-12 1.5l8 4.6v9.3l-8 4.6-8-4.6v-9.3l8-4.6z" opacity="0.9" />
-    </svg>
-    <span className="text-xs font-bold text-white/70 uppercase tracking-wider">MERN Stack</span>
+    <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Salesforce</span>
   </div>
 );
 
@@ -91,10 +72,7 @@ const About = () => {
               <JavaIcon />
             </div>
             <div data-aos="zoom-in" data-aos-delay="450" className="hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-2xl">
-              <SpringBootIcon />
-            </div>
-            <div data-aos="zoom-in" data-aos-delay="600" className="hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-2xl">
-              <MernIcon />
+              <SalesforceIcon />
             </div>
           </div>
 
