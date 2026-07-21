@@ -23,7 +23,6 @@ export const personalInfo = {
 export const socialLinks = {
   github: "https://github.com/",
   linkedin: "https://www.linkedin.com/in/sinegaselvakumar",
-  instagram: "https://www.instagram.com/",
 };
 
 export const heroContent = {
