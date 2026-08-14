@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { certificates } from '../data/portfolioData';
 
 const CertificateCard = ({ cert, aosDelay }) => (
@@ -26,7 +26,7 @@ const CertificateCard = ({ cert, aosDelay }) => (
 
 const Certificates = () => {
   return (
-    <section className="bg-[#ff2a2a] pt-20 pb-28 px-6 md:px-12 w-full relative overflow-hidden font-sans">
+    <section className="bg-[#061B3A] pt-20 pb-28 px-6 md:px-12 w-full relative overflow-hidden font-sans">
       
       {/* Torn paper divider at top (transition from dark Projects section) */}
       <div className="absolute top-0 left-0 w-full pointer-events-none z-10 transform -translate-y-[1px] rotate-180">
@@ -38,10 +38,10 @@ const Certificates = () => {
       <div className="max-w-6xl mx-auto relative z-20">
         {/* Header */}
         <div data-aos="fade-up" className="mb-12 md:mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-black mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
             Certifications
           </h2>
-          <p className="text-red-100 text-base md:text-lg font-semibold max-w-lg mx-auto">
+          <p className="text-[#A9BDD0] text-base md:text-lg font-semibold max-w-lg mx-auto">
             Industry-recognized certifications that validate my technical expertise.
           </p>
         </div>
@@ -64,7 +64,7 @@ const Certificates = () => {
             onClick={() => certificates.featured.forEach(cert => window.open(cert.url, '_blank', 'noopener,noreferrer'))}
             className="flex items-center gap-3 px-8 py-3.5 rounded-full bg-white text-black font-bold text-base hover:bg-gray-100 hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group"
           >
-            <svg className="w-5 h-5 text-[#ff2a2a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-[#1769D1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             Show All Certifications

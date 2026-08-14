@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { education } from '../data/portfolioData';
 
 const Education = () => {
@@ -24,10 +24,10 @@ const Education = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          <div data-aos="fade-right" className="bg-[#ff2a2a] rounded-3xl p-8 text-white shadow-[0_20px_50px_rgba(255,42,42,0.15)]">
+          <div data-aos="fade-right" className="bg-[#0B2345] rounded-3xl p-8 text-white shadow-[0_20px_50px_rgba(23,105,209,0.15)]">
             <p className="text-xs font-black uppercase tracking-[0.3em] opacity-80 mb-4">Degree</p>
             <h3 className="text-2xl md:text-3xl font-black mb-3">{education.degree}</h3>
-            <p className="text-red-50 text-base font-medium">{education.institution}</p>
+            <p className="text-[#A9BDD0] text-base font-medium">{education.institution}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <span className="px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-semibold">CGPA: {education.cgpa}</span>
               <span className="px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-semibold">Graduation: {education.graduation}</span>
@@ -37,9 +37,9 @@ const Education = () => {
           <div data-aos="fade-left" className="bg-[#111111] rounded-3xl p-8 text-white border border-white/10">
             <p className="text-xs font-black uppercase tracking-[0.3em] text-white/50 mb-4">Highlights</p>
             <ul className="space-y-4 text-sm md:text-base text-white/80 leading-relaxed">
-              <li className="flex gap-3"><span className="text-[#ff2a2a] font-black">•</span><span>Strong academic performance with a consistent focus on computing, analytics, and software development.</span></li>
-              <li className="flex gap-3"><span className="text-[#ff2a2a] font-black">•</span><span>Built practical project experience alongside academic learning through internships and applied work.</span></li>
-              <li className="flex gap-3"><span className="text-[#ff2a2a] font-black">•</span><span>Completed HSC with {education.twelfth} and maintained a firm technical foundation throughout studies.</span></li>
+              <li className="flex gap-3"><span className="text-[#1769D1] font-black">â€¢</span><span>Strong academic performance with a consistent focus on computing, analytics, and software development.</span></li>
+              <li className="flex gap-3"><span className="text-[#1769D1] font-black">â€¢</span><span>Built practical project experience alongside academic learning through internships and applied work.</span></li>
+              <li className="flex gap-3"><span className="text-[#1769D1] font-black">â€¢</span><span>Completed HSC with {education.twelfth} and maintained a firm technical foundation throughout studies.</span></li>
             </ul>
           </div>
         </div>

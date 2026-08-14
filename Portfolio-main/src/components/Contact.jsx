@@ -43,7 +43,7 @@ const Contact = () => {
   };
 
   return (
-    <section ref={ref} id="contact" className="bg-[#0a0a0a] w-full min-h-screen relative overflow-hidden flex items-end pt-32 pb-0 md:pb-0 border-t border-gray-900">
+    <section ref={ref} id="contact" className="bg-[#061B3A] w-full min-h-screen relative overflow-hidden flex items-end pt-32 pb-0 md:pb-0 border-t border-gray-900">
       {/* Huge Background Text */}
       <motion.div 
         style={{ y }}
@@ -61,7 +61,7 @@ const Contact = () => {
       <div className="relative z-10 w-full flex justify-end items-end">
         <div 
           data-aos="fade-up"
-          className="bg-[#ff2a2a] w-full md:w-[85%] lg:w-[75%] p-8 md:p-16 text-white flex flex-col justify-between"
+          className="bg-[#0B2345] w-full md:w-[85%] lg:w-[75%] p-8 md:p-16 text-white flex flex-col justify-between"
         >
           <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-12">
             <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-90">
@@ -152,8 +152,8 @@ const Contact = () => {
                         : status === 'success'
                         ? 'bg-green-600 border-green-500 text-white shadow-[0_0_20px_rgba(22,163,74,0.4)]'
                         : status === 'error'
-                        ? 'bg-red-800 border-red-700 text-white'
-                        : 'hover:bg-white hover:text-[#ff2a2a]'
+                        ? 'bg-[#0B2345] border-[#061B3A] text-white'
+                        : 'hover:bg-white hover:text-[#1769D1]'
                     }`}
                   >
                     {status === 'sending' ? (
@@ -166,11 +166,11 @@ const Contact = () => {
                       </span>
                     ) : status === 'success' ? (
                       <span className="flex items-center gap-2">
-                        Sent Successfully ✓
+                        Sent Successfully âœ“
                       </span>
                     ) : status === 'error' ? (
                       <span className="flex items-center gap-2">
-                        Failed — Try Again
+                        Failed â€” Try Again
                       </span>
                     ) : 'Send Message'}
                     

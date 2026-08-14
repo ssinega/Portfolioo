@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { internshipsList } from '../data/portfolioData';
 
 const InternshipCard = ({ intern, index }) => (
@@ -19,7 +19,7 @@ const InternshipCard = ({ intern, index }) => (
       <h3 className="text-white text-2xl font-black mb-1 tracking-tight">
         {intern.role}
       </h3>
-      <p className="text-red-200 text-sm font-black tracking-wide mb-6 uppercase">
+      <p className="text-[#A9BDD0] text-sm font-black tracking-wide mb-6 uppercase">
         {intern.organization}
       </p>
 
@@ -53,7 +53,7 @@ const InternshipCard = ({ intern, index }) => (
 
 const Internships = () => {
   return (
-    <section className="bg-[#ff2a2a] pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans">
+    <section className="bg-[#061B3A] pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans">
       
       {/* Torn paper divider at top */}
       <div className="absolute top-0 left-0 w-full pointer-events-none z-10 transform -translate-y-[1px] rotate-180">
@@ -66,10 +66,10 @@ const Internships = () => {
         
         {/* Header */}
         <div data-aos="fade-up" className="mb-16 md:mb-20 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-black mb-4 tracking-tight uppercase">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight uppercase">
             Work Experience
           </h2>
-          <p className="text-red-100 text-base md:text-lg font-semibold max-w-lg mx-auto">
+          <p className="text-[#A9BDD0] text-base md:text-lg font-semibold max-w-lg mx-auto">
             Practical internships where I applied engineering principles and built real-world assets.
           </p>
         </div>
