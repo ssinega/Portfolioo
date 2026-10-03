@@ -91,8 +91,9 @@ const Navbar = () => {
             className="nav-hire-btn inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold text-white transition-all duration-300"
           >
             Hire Me
-            <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 12h14m-7-7 7 7-7 7" />
+            {/* Paper plane / send icon — matches Screenshot 2 */}
+            <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
             </svg>
           </a>
         </div>
