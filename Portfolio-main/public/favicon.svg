@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.48" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7c2"/>
+      <stop offset="0.45" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Transparent canvas: no background rectangle -->
+
+  <!-- Bold S mark, enlarged for favicon readability -->
+  <path d="M352 72
+           C310 39 228 38 166 68
+           C111 95 85 143 99 188
+           C112 231 155 252 214 259
+           L283 267
+           C309 270 322 282 319 299
+           C315 322 289 337 253 338
+           C207 339 174 323 145 296
+           L87 356
+           C131 408 195 435 268 432
+           C347 429 403 393 417 340
+           C431 287 393 246 327 236
+           L256 225
+           C229 221 214 210 217 194
+           C221 173 247 159 280 159
+           C319 159 349 173 374 196
+           L425 139
+           C404 113 380 91 352 72Z"
+        fill="url(#blue)"
+        stroke="#bdf6ff"
+        stroke-width="11"
+        stroke-linejoin="round"/>
+
+  <!-- Lightning bolt: central personality mark -->
+  <path d="M294 101 L229 251 H273 L220 401 L338 226 H291 L348 101 Z"
+        fill="url(#gold)"
+        stroke="#fff8d8"
+        stroke-width="7"
+        stroke-linejoin="round"/>
+
+  <!-- Compact wizard-hat cue -->
+  <path d="M193 134
+           C214 102 245 80 282 71
+           C310 65 334 68 355 79
+           C327 91 303 111 285 137
+           C268 160 257 185 252 207
+           C236 178 217 154 193 134Z"
+        fill="#111827"
+        stroke="#60a5fa"
+        stroke-width="7"/>
+  <path d="M170 179 C218 159 281 154 343 166 C360 169 375 174 389 181 C350 193 306 198 263 196 C225 195 194 190 170 179Z"
+        fill="#0f172a"
+        stroke="url(#gold)"
+        stroke-width="7"/>
+
+  <!-- Glasses -->
+  <g fill="none" stroke="url(#gold)" stroke-width="8">
+    <circle cx="230" cy="183" r="24"/>
+    <circle cx="296" cy="183" r="24"/>
+    <path d="M254 183 H272"/>
+  </g>
+
+  <!-- Minimal spider/web cue kept bold enough for small sizes -->
+  <g fill="none" stroke="#ffd166" stroke-width="6" stroke-linecap="round">
+    <ellipse cx="155" cy="364" rx="11" ry="17" fill="#ffd166"/>
+    <path d="M145 356 L126 340 M165 356 L184 340"/>
+    <path d="M144 365 L121 365 M166 365 L190 365"/>
+    <path d="M145 374 L128 392 M165 374 L183 392"/>
+  </g>
+</svg>
