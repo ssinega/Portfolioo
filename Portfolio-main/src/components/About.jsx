@@ -84,7 +84,7 @@ const About = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[310px_minmax(0,1fr)_360px] lg:gap-10 xl:gap-14">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[280px_minmax(0,1fr)_300px] xl:gap-10">
           <div data-aos="fade-right" className="flex justify-center lg:justify-start">
             <div className="relative pt-16">
               <div className="absolute left-1/2 top-0 h-20 w-px -translate-x-1/2 bg-[#38BDF8]/60" />
@@ -121,7 +121,7 @@ const About = () => {
             </div>
           </div>
 
-          <div data-aos="fade-left" data-aos-delay="250" className="mx-auto h-[360px] w-full max-w-[360px] lg:h-[420px]">
+          <div data-aos="fade-left" data-aos-delay="250" className="mx-auto h-[360px] w-full max-w-[360px] lg:col-span-2 lg:h-[300px] xl:col-span-1 xl:h-[420px]">
             <CloudInfrastructure />
           </div>
         </div>

@@ -25,7 +25,7 @@ const Education = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           <div data-aos="fade-right" className="bg-[#0B2345] rounded-3xl p-8 text-white shadow-[0_20px_50px_rgba(23,105,209,0.15)]">
             <p className="text-xs font-black uppercase tracking-[0.3em] opacity-80 mb-4">Degree</p>
-            <h3 className="text-2xl md:text-3xl font-black mb-3">{education.degree}</h3>
+            <h3 className="break-words text-2xl md:text-3xl font-black mb-3">{education.degree}</h3>
             <p className="text-[#A9BDD0] text-base font-medium">{education.institution}</p>
             <p className="mt-4 text-sm font-semibold text-[#DCEEFF]">{education.status}</p>
             <div className="mt-6 flex flex-wrap gap-3">

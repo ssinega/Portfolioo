@@ -16,7 +16,7 @@ const ProjectCard = ({ project, aosDelay }) => (
   <div 
     data-aos="fade-up"
     data-aos-delay={aosDelay}
-    className={`relative rounded-2xl p-[1px] group transition-all duration-500 ${
+    className={`relative rounded-2xl p-[1px] group transition-all duration-500 ${project.isFlagship ? 'md:col-span-2 xl:col-span-3' : ''} ${
       project.isFlagship 
         ? 'bg-gradient-to-br from-[#1769D1]/50 via-white/10 to-[#1769D1]/30 hover:from-[#1769D1] hover:via-[#38BDF8]/30 hover:to-[#1769D1]/60' 
         : 'bg-white/10 hover:bg-white/20'
@@ -36,8 +36,8 @@ const ProjectCard = ({ project, aosDelay }) => (
 
       {/* Number + Title */}
       <div className="flex items-baseline gap-4 mb-4">
-        <span className="text-5xl font-black text-white/10 font-serif italic">{project.number}</span>
-        <h3 className="break-words text-2xl font-black text-white tracking-tight md:text-3xl">{project.title}</h3>
+        <span className="shrink-0 text-3xl font-black text-white/10 font-serif italic md:text-5xl">{project.number}</span>
+        <h3 className="min-w-0 flex-1 break-words text-xl font-black text-white tracking-tight sm:text-2xl md:text-3xl">{project.title}</h3>
       </div>
 
       {/* Description */}
@@ -145,7 +145,7 @@ const Projects = () => {
         </div>
 
         {/* Project Cards */}
-        <div className="flex flex-col gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard 
               key={project.id} 

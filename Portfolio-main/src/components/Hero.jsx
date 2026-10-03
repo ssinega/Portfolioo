@@ -40,7 +40,7 @@ const SocialLink = ({ href, label, children }) => (
 );
 
 const CloudCluster = ({ className }) => (
-  <div className={`absolute pointer-events-none ${className}`} aria-hidden="true">
+  <div className={`hero-cloud absolute pointer-events-none ${className}`} aria-hidden="true">
     <span className="absolute bottom-0 left-6 h-14 w-28 rounded-full bg-white/80 blur-[1px]" />
     <span className="absolute bottom-3 left-0 h-12 w-16 rounded-full bg-white/75 blur-[1px]" />
     <span className="absolute bottom-5 left-16 h-20 w-20 rounded-full bg-white/85 blur-[1px]" />
@@ -48,13 +48,70 @@ const CloudCluster = ({ className }) => (
   </div>
 );
 
+const featureIconPaths = {
+  cloud: <path d="M7 18h10a4 4 0 0 0 .4-8A6 6 0 0 0 6 11a3.5 3.5 0 0 0 1 7Z" />,
+  flow: <path d="M7 5h10v5H7zM7 14h10v5H7zM12 10v4M5 7.5h2M17 16.5h2" />,
+  model: <><rect x="3.5" y="4" width="7" height="6" rx="1" /><rect x="13.5" y="14" width="7" height="6" rx="1" /><path d="M10.5 7h3v10h-3M7 10v3a4 4 0 0 0 4 4h2" /></>,
+  security: <><path d="M12 3 19 6v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" /><path d="m9 12 2 2 4-4" /></>,
+  reporting: <><path d="M4 19V5M4 19h17" /><path d="m7 15 4-4 3 2 5-6" /><circle cx="7" cy="15" r="1" /><circle cx="11" cy="11" r="1" /><circle cx="14" cy="13" r="1" /><circle cx="19" cy="7" r="1" /></>,
+  lightning: <path d="M13 2 5 13h6l-1 9 9-12h-6l1-8Z" />,
+};
+
+const FeatureIcon = ({ kind, className = 'h-5 w-5' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {featureIconPaths[kind]}
+  </svg>
+);
+
+const featureItems = [
+  { label: 'Service Cloud', icon: 'cloud' },
+  { label: 'Flow Automation', icon: 'flow' },
+  { label: 'Data Modeling', icon: 'model' },
+  { label: 'Security', icon: 'security' },
+  { label: 'Reporting', icon: 'reporting' },
+];
+
+const floatingItems = [
+  { label: 'Service Cloud', icon: 'cloud', position: 'hero-float-card--cloud', delay: '0s' },
+  { label: 'Flow Automation', icon: 'lightning', position: 'hero-float-card--flow', delay: '-1.2s' },
+  { label: 'Reporting', icon: 'reporting', position: 'hero-float-card--insights', delay: '-2.4s' },
+  { label: 'Security', icon: 'security', position: 'hero-float-card--trust', delay: '-3.6s' },
+  { label: 'Data Modeling', icon: 'model', position: 'hero-float-card--model', delay: '-4.8s' },
+];
+
 const Hero = () => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true, easing: 'ease-out' });
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    AOS.init({ duration: reduceMotion ? 1 : 760, once: true, easing: 'ease-out', offset: reduceMotion ? 0 : 80 });
   }, []);
+
+  const handleProfilePointerMove = (event) => {
+    if (event.pointerType !== 'mouse'
+      || !window.matchMedia('(min-width: 1280px) and (pointer: fine)').matches
+      || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const media = event.currentTarget;
+    const bounds = media.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+    const frame = media.querySelector('.hero-profile-frame');
+
+    media.style.setProperty('--parallax-x', `${x * 8}px`);
+    media.style.setProperty('--parallax-y', `${y * 6}px`);
+    frame?.style.setProperty('--tilt-x', `${y * -2.5}deg`);
+    frame?.style.setProperty('--tilt-y', `${x * 2.5}deg`);
+  };
+
+  const resetProfilePointer = (event) => {
+    const media = event.currentTarget;
+    media.style.setProperty('--parallax-x', '0px');
+    media.style.setProperty('--parallax-y', '0px');
+    media.querySelector('.hero-profile-frame')?.style.setProperty('--tilt-x', '0deg');
+    media.querySelector('.hero-profile-frame')?.style.setProperty('--tilt-y', '0deg');
+  };
 
   const stopReel = () => {
     const video = videoRef.current;
@@ -85,9 +142,19 @@ const Hero = () => {
   const emailHref = `mailto:${personalInfo.emails.primary}`;
 
   return (
-    <section id="home" className="relative min-h-[100svh] w-full overflow-hidden bg-[#F3F8FF] text-[#0B2345]">
+    <section id="home" className="hero-shell relative min-h-[100svh] w-full overflow-hidden bg-[#F3F8FF] text-[#0B2345]">
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#FFFFFF_0%,#F3F8FF_42%,#DCEEFF_100%)]" />
+        <div className="hero-depth-sphere hero-depth-sphere--left" />
+        <div className="hero-depth-sphere hero-depth-sphere--right" />
+        <div className="hero-particles" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         <CloudCluster className="left-[4%] top-[18%] h-28 w-60 opacity-80" />
         <CloudCluster className="right-[9%] top-[14%] h-28 w-64 scale-125 opacity-70" />
         <CloudCluster className="left-[38%] top-[9%] h-24 w-52 scale-75 opacity-60" />
@@ -98,8 +165,8 @@ const Hero = () => {
         </svg>
       </div>
 
-      <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1500px] grid-cols-1 items-center gap-8 px-6 pb-40 pt-28 sm:px-8 md:px-12 md:pt-32 lg:grid-cols-[72px_minmax(0,540px)_minmax(520px,1fr)] lg:gap-10 lg:pb-28 xl:px-16">
-        <div className="hidden h-full items-center justify-center lg:flex">
+      <div className="hero-layout relative z-30 mx-auto grid min-h-[100svh] w-full max-w-[1500px] grid-cols-1 items-start gap-5 px-6 pb-20 pt-20 sm:px-8 md:items-center md:gap-8 md:px-12 md:pb-28 md:pt-32 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[56px_minmax(0,540px)_minmax(460px,1fr)] xl:px-16">
+        <div className="hidden h-full items-center justify-center xl:flex">
           <div data-aos="fade-right" className="flex flex-col items-center gap-5">
             <SocialLink href={socialLinks.github} label="GitHub">
               <GitHubIcon />
@@ -113,30 +180,34 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative z-20 max-w-xl lg:pb-12" data-aos="fade-up">
-          <h1 className="mb-5 text-[clamp(2.75rem,4.5vw,4.5rem)] font-black leading-[0.95] text-[#0B2345]">
+        <div className="hero-copy relative z-20 min-w-0 max-w-xl xl:pb-12" data-aos="fade-up">
+          <div className="hero-eyebrow" aria-hidden="true"><span>HELLO THERE</span></div>
+          <h1 className="mb-3 text-[clamp(1.75rem,8vw,4.5rem)] font-black leading-[0.95] text-[#0B2345] md:mb-5 md:text-[clamp(2.75rem,4.5vw,4.5rem)]">
             {heroContent.greeting}
           </h1>
-          <h2 className="mb-4 max-w-[600px] break-words text-[clamp(2rem,3vw,3rem)] font-black leading-[1.02] text-[#1769D1]">
+          <h2 className="hero-title-gradient mb-3 max-w-[600px] break-words text-[clamp(1.5rem,7.5vw,3rem)] font-black leading-[1] md:mb-4 md:text-[clamp(2rem,3vw,3rem)] md:leading-[1.02]">
             {heroContent.title}
           </h2>
-          <p className="mb-5 text-sm font-bold leading-relaxed text-[#0B2345]/75 md:text-base">
+          <p className="mb-3 text-sm font-bold leading-relaxed text-[#0B2345]/75 md:mb-5 md:text-base">
             {heroContent.credential}
           </p>
-          <p className="mb-9 max-w-[540px] text-base font-medium leading-[1.7] text-[#0B2345]/85 md:text-lg">
+          <p className="mb-6 max-w-[540px] text-[clamp(0.8125rem,4vw,1rem)] font-medium leading-[1.45] text-[#0B2345]/85 md:mb-9 md:text-lg md:leading-[1.7]">
             {heroContent.subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center gap-4" data-aos="fade-up" data-aos-delay="150">
+          <div className="flex flex-wrap items-center gap-4" data-aos="fade-up" data-aos-delay="150" data-aos-offset="0">
             <a
               href={heroContent.ctaPrimary.href}
-              className="rounded-full bg-[#1769D1] px-7 py-3.5 text-sm font-bold text-white shadow-[0_16px_35px_rgba(23,105,209,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#0B2345]"
+              className="hero-primary-cta rounded-full bg-[#1769D1] px-7 py-3.5 text-sm font-bold text-white shadow-[0_16px_35px_rgba(23,105,209,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#0B2345]"
             >
               {heroContent.ctaPrimary.text}
+              <svg className="hero-cta-arrow ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7-7 7 7-7 7" />
+              </svg>
             </a>
             <a
               href={heroContent.ctaSecondary.href}
-              className="rounded-full border-2 border-[#1769D1] bg-white/75 px-7 py-3.5 text-sm font-bold text-[#1769D1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white"
+              className="hero-secondary-cta rounded-full border-2 border-[#1769D1] bg-white/75 px-7 py-3.5 text-sm font-bold text-[#1769D1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white"
             >
               {heroContent.ctaSecondary.text}
             </a>
@@ -152,7 +223,7 @@ const Hero = () => {
             </a>
           </div>
 
-          <div className="mt-8 flex items-center gap-4 lg:hidden" data-aos="fade-up" data-aos-delay="250">
+          <div className="mt-8 flex items-center gap-4 xl:hidden" data-aos="fade-up" data-aos-delay="250">
             <SocialLink href={socialLinks.github} label="GitHub">
               <GitHubIcon />
             </SocialLink>
@@ -165,63 +236,96 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-[440px] items-end justify-center self-end md:min-h-[560px] lg:min-h-[680px] lg:justify-end" data-aos="fade-left" data-aos-delay="250">
-          <svg className="absolute bottom-10 right-1/2 h-[420px] w-[420px] translate-x-1/2 text-[#1769D1] opacity-80 md:h-[560px] md:w-[560px] lg:bottom-14 lg:right-[43%] lg:h-[680px] lg:w-[680px]" viewBox="0 0 600 600" fill="none" aria-hidden="true">
-            <circle cx="300" cy="300" r="248" stroke="currentColor" strokeOpacity="0.15" strokeWidth="2" strokeDasharray="520 210" />
-            <circle cx="300" cy="300" r="198" stroke="currentColor" strokeOpacity="0.18" strokeWidth="2" strokeDasharray="360 180" />
-            <circle cx="300" cy="300" r="138" stroke="currentColor" strokeOpacity="0.13" strokeWidth="1.5" strokeDasharray="220 120" />
-          </svg>
+        <div
+          className="hero-media relative z-10 flex w-full min-w-0 items-center justify-center self-center xl:justify-end"
+          data-aos="fade-up"
+          data-aos-delay="250"
+          onPointerMove={handleProfilePointerMove}
+          onPointerLeave={resetProfilePointer}
+        >
+          <div className="hero-scene relative mx-auto w-full max-w-[690px]">
+            <svg className="hero-orbit absolute bottom-10 right-1/2 h-[420px] w-[420px] text-[#1769D1] opacity-80 md:h-[560px] md:w-[560px] lg:bottom-14 lg:h-[680px] lg:w-[680px]" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+              <circle cx="300" cy="300" r="248" stroke="currentColor" strokeOpacity="0.19" strokeWidth="2" strokeDasharray="520 210" />
+              <circle cx="300" cy="300" r="198" stroke="currentColor" strokeOpacity="0.22" strokeWidth="2" strokeDasharray="360 180" />
+              <circle cx="300" cy="300" r="138" stroke="currentColor" strokeOpacity="0.16" strokeWidth="1.5" strokeDasharray="220 120" />
+            </svg>
 
-          <div className="relative h-[440px] w-full max-w-[620px] sm:h-[520px] md:h-[610px] lg:h-[700px] lg:max-w-[690px]">
-            <div className="absolute inset-0 overflow-hidden">
-              <img
-                src={heroPoster}
-                alt={personalInfo.name}
-                className={`absolute inset-0 h-full w-full object-cover object-[52%_100%] drop-shadow-[0_34px_48px_rgba(11,35,69,0.24)] transition-opacity duration-500 ${isPlaying ? 'opacity-0' : 'opacity-100'} lg:bottom-[-18px]`}
-                style={{
-                  WebkitMaskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
-                  maskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
-                }}
-              />
+            <div className="hero-scene-atmosphere pointer-events-none absolute inset-0" aria-hidden="true">
+              <span className="hero-scene-halo" />
+              <span className="hero-scene-orb hero-scene-orb--one" />
+              <span className="hero-scene-orb hero-scene-orb--two" />
+              <span className="hero-scene-orb hero-scene-orb--three" />
+              <span className="hero-scene-ring hero-scene-ring--one" />
+              <span className="hero-scene-ring hero-scene-ring--two" />
+            </div>
 
-              <video
-                ref={videoRef}
-                src={introVideo}
-                poster={heroPoster}
-                playsInline
-                preload="auto"
-                muted={false}
-                onEnded={stopReel}
-                onLoadedMetadata={(event) => {
-                  event.currentTarget.volume = 1;
-                  event.currentTarget.muted = false;
-                }}
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'} ${isPlaying ? 'pointer-events-auto' : 'pointer-events-none'}`}
-                style={{
-                  WebkitMaskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
-                  maskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
-                }}
-              />
+            <div className="hero-platform pointer-events-none absolute inset-x-[4%] bottom-0 z-[1]" aria-hidden="true">
+              <div className="hero-platform-surface" />
+              <div className="hero-platform-lip" />
+              <span className="hero-platform-label hero-platform-label--left">SERVICE CLOUD</span>
+              <span className="hero-platform-label hero-platform-label--right">FLOW · SECURITY</span>
+            </div>
 
-              {isPlaying && (
-                <button
-                  type="button"
-                  aria-label="Close reel"
-                  onClick={stopReel}
-                  className="absolute right-4 top-4 z-40 grid h-9 w-9 place-items-center rounded-full bg-white/80 text-lg font-bold text-[#0B2345] shadow-lg transition-transform duration-200 hover:scale-105"
-                >
-                  ×
-                </button>
-              )}
+            <div className="hero-profile-frame absolute left-[5%] top-[4%] z-[5] aspect-video w-[90%] max-w-none">
+              <div className="absolute inset-[5px] overflow-hidden rounded-[24px]">
+                <img
+                  src={heroPoster}
+                  alt={personalInfo.name}
+                  className={`absolute inset-0 h-full w-full object-contain drop-shadow-[0_34px_48px_rgba(11,35,69,0.24)] transition-opacity duration-500 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}
+                  style={{
+                    WebkitMaskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
+                    maskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
+                  }}
+                />
+
+                <video
+                  ref={videoRef}
+                  src={introVideo}
+                  poster={heroPoster}
+                  playsInline
+                  preload="auto"
+                  muted={false}
+                  onEnded={stopReel}
+                  onLoadedMetadata={(event) => {
+                    event.currentTarget.volume = 1;
+                    event.currentTarget.muted = false;
+                  }}
+                  className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'} ${isPlaying ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                  style={{
+                    WebkitMaskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
+                    maskImage: 'radial-gradient(ellipse 76% 92% at 53% 52%, #000 66%, rgba(0,0,0,0.88) 78%, transparent 100%)',
+                  }}
+                />
+
+                {isPlaying && (
+                  <button
+                    type="button"
+                    aria-label="Close reel"
+                    onClick={stopReel}
+                    className="absolute right-4 top-4 z-40 grid h-9 w-9 place-items-center rounded-full bg-white/80 text-lg font-bold text-[#0B2345] shadow-lg transition-transform duration-200 hover:scale-105"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="hero-float-layer pointer-events-none absolute inset-0" aria-hidden="true">
+              {floatingItems.map((item) => (
+                <div key={item.label} className={`hero-float-card ${item.position}`} style={{ '--float-delay': item.delay }}>
+                  <FeatureIcon kind={item.icon} className="h-5 w-5" />
+                  <span>{item.label}</span>
+                </div>
+              ))}
             </div>
 
             <button
               type="button"
               onClick={toggleVideo}
-              className="absolute right-0 top-8 z-20 flex flex-col items-center gap-3 text-[#1769D1] transition-transform duration-300 hover:-translate-y-1 sm:right-6 md:right-2 lg:-right-6 lg:top-24"
+              className="hero-play-control absolute right-0 top-[34%] z-30 flex flex-col items-center gap-2 text-[#1769D1] transition-transform duration-300 hover:-translate-y-1 xl:-right-[10%] xl:top-[36%]"
               aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
             >
-              <span className="grid h-20 w-20 place-items-center rounded-full bg-[#1769D1] text-white shadow-[0_22px_45px_rgba(23,105,209,0.35)] transition-all duration-300 hover:scale-110 md:h-28 md:w-28">
+              <span className="hero-play-orb grid h-20 w-20 place-items-center rounded-full bg-[#1769D1] text-white shadow-[0_22px_45px_rgba(23,105,209,0.35)] transition-all duration-300 md:h-28 md:w-28">
                 {isPlaying ? (
                   <svg className="h-9 w-9 md:h-11 md:w-11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
@@ -236,11 +340,20 @@ const Hero = () => {
             </button>
           </div>
         </div>
+
+        <div className="hero-feature-strip col-span-1 grid grid-cols-2 gap-2 sm:grid-cols-3 md:col-span-1 lg:col-span-2 xl:col-span-3 xl:grid-cols-5" data-aos="fade-up" data-aos-delay="300">
+          {featureItems.map((item) => (
+            <div className="hero-feature-item" key={item.label}>
+              <FeatureIcon kind={item.icon} className="h-4 w-4 shrink-0" />
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <a
         href="#about"
-        className="absolute bottom-32 left-1/2 z-30 hidden h-14 w-14 -translate-x-1/2 place-items-center rounded-full border-2 border-[#0B2345] text-[#0B2345] transition-all duration-300 hover:-translate-y-1 hover:border-[#1769D1] hover:text-[#1769D1] md:grid"
+        className="absolute bottom-32 right-4 z-[25] hidden h-14 w-14 place-items-center rounded-full border-2 border-[#0B2345] text-[#0B2345] transition-all duration-300 hover:-translate-y-1 hover:border-[#1769D1] hover:text-[#1769D1] xl:grid"
         aria-label="Scroll to About"
       >
         <svg className="h-6 w-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -249,7 +362,7 @@ const Hero = () => {
       </a>
 
       <svg
-        className="absolute bottom-[-1px] left-0 z-20 h-[190px] w-full md:h-[240px]"
+        className="pointer-events-none absolute bottom-[-1px] left-0 z-20 h-[190px] w-full md:h-[240px]"
         viewBox="0 0 1440 240"
         preserveAspectRatio="none"
         aria-hidden="true"

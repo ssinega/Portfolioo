@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { softSkillsList } from '../data/portfolioData';
+﻿import { softSkillsList } from '../data/portfolioData';
 
 const SoftSkillCard = ({ skill, index }) => (
   <div 
@@ -39,7 +38,7 @@ const SoftSkills = () => {
           <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-6 shadow-sm bg-white">
             Core Competencies
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4 uppercase">
+          <h2 className="break-words text-[clamp(1.75rem,8vw,3rem)] md:text-5xl font-black text-gray-900 tracking-tight mb-4 leading-tight uppercase">
             Professional Soft Skills
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-lg mx-auto leading-relaxed">

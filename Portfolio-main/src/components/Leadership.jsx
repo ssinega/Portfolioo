@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { leadershipList } from '../data/portfolioData';
+﻿import { leadershipList } from '../data/portfolioData';
 
 const LeadershipItem = ({ item, index }) => {
   const isEven = index % 2 === 0;
@@ -23,7 +22,7 @@ const LeadershipItem = ({ item, index }) => {
             </span>
           </div>
           
-          <h3 className="text-white text-xl font-black mb-1 tracking-tight group-hover:text-[#1769D1] transition-colors">
+          <h3 className="break-words text-white text-xl font-black mb-1 tracking-tight group-hover:text-[#1769D1] transition-colors">
             {item.title}
           </h3>
           <p className="text-[#A9BDD0] text-xs font-bold font-mono tracking-wider uppercase mb-4">

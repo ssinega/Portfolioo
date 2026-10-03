@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData';
 
 const Navbar = () => {
@@ -18,15 +18,15 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-md py-4' 
-          : 'bg-transparent py-6'
+      className={`hero-glass-nav fixed left-1/2 top-3 z-50 w-[calc(100%-1.5rem)] max-w-[1280px] -translate-x-1/2 rounded-2xl border transition-all duration-300 ${
+        isScrolled
+          ? 'border-white/80 bg-white/80 py-1.5 shadow-[0_12px_36px_rgba(23,105,209,0.12)] backdrop-blur-[18px]'
+          : 'border-white/60 bg-white/60 py-1.5 shadow-[0_8px_28px_rgba(23,105,209,0.08)] backdrop-blur-[18px]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <a href="#" className="text-[#0B2345] text-2xl font-black tracking-tight whitespace-nowrap">
+        <a href="#" className="flex min-h-11 items-center text-[#0B2345] text-2xl font-black tracking-tight whitespace-nowrap">
           {personalInfo.brandName}<span className="text-[#1769D1]">.</span>
         </a>
 
@@ -61,7 +61,7 @@ const Navbar = () => {
         {/* Mobile Hamburger */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-[#0B2345] p-2"
+          className="md:hidden min-h-11 min-w-11 text-[#0B2345] p-2"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
@@ -85,7 +85,7 @@ const Navbar = () => {
               key={link} 
               href={`#${link.toLowerCase()}`}
               onClick={() => setIsOpen(false)}
-              className={`font-bold text-lg border-b border-gray-200 pb-2 transition-colors ${
+              className={`flex min-h-11 items-center font-bold text-lg border-b border-gray-200 pb-2 transition-colors ${
                 link === 'Home' ? 'text-[#1769D1]' : 'text-[#0B2345] hover:text-[#1769D1]'
               }`}
             >
