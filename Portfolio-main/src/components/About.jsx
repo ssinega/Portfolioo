@@ -3,126 +3,79 @@ import aboutPhoto from '../assets/about/yusuf-avatar.png';
 import salesforceLogo from '../assets/logos/salesforce.svg';
 import { aboutContent, personalInfo } from '../data/portfolioData';
 
-/* ─── ICONS ──────────────────────────────────────────────────── */
-const CloudStackIcon = () => (
-  <svg className="h-7 w-7" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-    <path d="M11.5 27.5H29c4.4 0 8-3.3 8-7.5 0-4-3.2-7.3-7.2-7.5C28.4 7.7 24 4 18.8 4c-5.7 0-10.5 4.3-11.1 9.9C4.4 15 2 17.9 2 21.4c0 3.4 2.8 6.1 6.2 6.1h3.3Z" fill="#DCEEFF"/>
-    <path d="M13 22h14M13 27h14M13 32h14" stroke="#1769D1" strokeWidth="2.2" strokeLinecap="round"/>
-  </svg>
-);
-const CodeStackIcon = ({ label }) => (
-  <div className="grid h-10 w-10 place-items-center rounded-lg border border-[#38BDF8]/30 bg-[#DCEEFF]/10 text-sm font-black text-[#38BDF8]">
-    {label}
-  </div>
-);
-const SalesforceIcon = () => (
-  <span className="grid h-10 w-10 place-items-center rounded-lg bg-white">
-    <img src={salesforceLogo} alt="" className="h-7 w-7 object-contain"/>
+/* ─── ICONS FOR SKILL PILLS ─────────────────────────────────── */
+const SalesforcePillIcon = () => (
+  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 p-0.5 shadow-[0_0_8px_rgba(56,189,248,0.3)]">
+    <img src={salesforceLogo} alt="" className="h-3.5 w-3.5 object-contain" />
   </span>
 );
 
-/* ─── PREMIUM STACK CARD with glassmorphism + hover 3D lift ─── */
-const StackCard = ({ icon, name, details, index }) => (
-  <div
-    className="about-stack-card group"
-    data-aos="fade-up"
-    data-aos-delay={350 + index * 80}
-  >
-    <div className="about-stack-card-icon">
-      {icon}
-    </div>
-    <h3 className="mb-1 text-base font-black text-white">{name}</h3>
-    {details && <p className="text-sm font-semibold text-[#38BDF8]">{details}</p>}
-    {/* Shimmer layer */}
-    <div className="about-stack-card-shimmer" aria-hidden="true"/>
-  </div>
+const ServiceCloudPillIcon = () => (
+  <svg className="h-4 w-4 text-[#38bdf8] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+  </svg>
 );
 
-/* ─── CLOUD INFRASTRUCTURE SVG with animated elements ───────── */
-const CloudInfrastructure = () => {
-  const [tick, setTick] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setTick(t => (t + 1) % 100), 60);
-    return () => clearInterval(id);
-  }, []);
+const FlowAutomationPillIcon = () => (
+  <svg className="h-4 w-4 text-[#38bdf8] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+  </svg>
+);
 
-  // Particle positions along data lines (0..1 progress)
-  const p1 = (tick % 100) / 100;
-  const p2 = ((tick + 33) % 100) / 100;
-  const p3 = ((tick + 66) % 100) / 100;
+const AgentforcePillIcon = () => (
+  <svg className="h-4 w-4 text-[#38bdf8] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
 
-  // Interpolate points along a line from (x1,y1) to (x2,y2)
-  const pt = (x1, y1, x2, y2, t) => ({
-    cx: x1 + (x2 - x1) * t,
-    cy: y1 + (y2 - y1) * t,
-  });
+const CrmSolutionsPillIcon = () => (
+  <svg className="h-4 w-4 text-[#38bdf8] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <ellipse cx="12" cy="5" rx="9" ry="3" />
+    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+  </svg>
+);
 
-  return (
-    <div className="about-cloud-wrap">
-      {/* Ambient glow behind cloud */}
-      <div className="about-cloud-glow" aria-hidden="true"/>
-      <svg className="about-cloud-svg" viewBox="0 0 360 420" fill="none" aria-hidden="true">
-        {/* ── Cloud shape ── */}
-        <g className="about-cloud-float">
-          <path
-            d="M80 138c1.2-45.6 38.9-82 84.8-82 24.3 0 46.3 10.2 61.8 26.5 8.8-4.6 18.8-7.2 29.4-7.2 34.8 0 63 28.2 63 63 0 2.9-.2 5.8-.6 8.6 22.2 7.3 38.1 28.2 38.1 52.8 0 30.7-24.9 55.6-55.6 55.6H76.7c-38.8 0-70.2-31.4-70.2-70.2 0-33.7 23.7-61.9 55.4-68.7 4.7-1 9.5-1.4 14.1-1.3 1.1 7.8 2.4 15.5 4 22.9Z"
-            fill="#1769D1" fillOpacity="0.16" stroke="#38BDF8" strokeWidth="2"
-          />
-          <path
-            d="M112 170h136M132 199h88M155 228h154"
-            stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" strokeDasharray="7 9" opacity="0.65"
-          />
-        </g>
+const CloudDataPillIcon = () => (
+  <svg className="h-4 w-4 text-[#38bdf8] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+  </svg>
+);
 
-        {/* ── Data connection lines ── */}
-        <path d="M180 258v38M104 296h152M104 296v34M180 296v34M256 296v34" stroke="#38BDF8" strokeWidth="2.2" strokeLinecap="round"/>
-
-        {/* ── Data particles moving down the lines ── */}
-        <circle {...pt(180, 258, 180, 296, p1)} r="3" fill="#38BDF8" opacity="0.85"/>
-        <circle {...pt(104, 296, 256, 296, p2)} r="3" fill="#38BDF8" opacity="0.75"/>
-        <circle {...pt(256, 296, 256, 330, p3)} r="3" fill="#38BDF8" opacity="0.80"/>
-
-        {/* ── Server racks ── */}
-        <g filter="url(#about-server-shadow)">
-          <rect x="45" y="330" width="118" height="56" rx="8" fill="#0B2345" stroke="#38BDF8" strokeOpacity="0.55"/>
-          <rect x="197" y="330" width="118" height="56" rx="8" fill="#0B2345" stroke="#38BDF8" strokeOpacity="0.55"/>
-          <rect x="121" y="260" width="118" height="56" rx="8" fill="#0B2345" stroke="#38BDF8" strokeOpacity="0.55"/>
-        </g>
-
-        {/* ── Status dots – pulsing via CSS ── */}
-        <circle cx="68" cy="350" r="5" fill="#38BDF8" className="about-dot-pulse"/>
-        <circle cx="90" cy="350" r="5" fill="#DCEEFF"/>
-        <path d="M113 350h31M68 367h76" stroke="#DCEEFF" strokeWidth="2" strokeLinecap="round" opacity="0.65"/>
-
-        <circle cx="220" cy="350" r="5" fill="#38BDF8" className="about-dot-pulse" style={{ animationDelay: '0.4s' }}/>
-        <circle cx="242" cy="350" r="5" fill="#DCEEFF"/>
-        <path d="M265 350h31M220 367h76" stroke="#DCEEFF" strokeWidth="2" strokeLinecap="round" opacity="0.65"/>
-
-        <circle cx="144" cy="280" r="5" fill="#38BDF8" className="about-dot-pulse" style={{ animationDelay: '0.8s' }}/>
-        <circle cx="166" cy="280" r="5" fill="#DCEEFF"/>
-        <path d="M189 280h31M144 297h76" stroke="#DCEEFF" strokeWidth="2" strokeLinecap="round" opacity="0.65"/>
-
-        <defs>
-          <filter id="about-server-shadow" x="25" y="240" width="310" height="166" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-            <feDropShadow dx="0" dy="18" stdDeviation="14" floodColor="#000000" floodOpacity="0.25"/>
-          </filter>
-        </defs>
-      </svg>
-    </div>
-  );
+const getPillIcon = (name) => {
+  switch (name) {
+    case 'Salesforce Administration':
+      return <SalesforcePillIcon />;
+    case 'Service Cloud':
+      return <ServiceCloudPillIcon />;
+    case 'Flow Automation':
+      return <FlowAutomationPillIcon />;
+    case 'Agentforce':
+      return <AgentforcePillIcon />;
+    case 'CRM Solutions':
+      return <CrmSolutionsPillIcon />;
+    case 'Cloud & Data':
+      return <CloudDataPillIcon />;
+    default:
+      return <CloudDataPillIcon />;
+  }
 };
 
-/* ─── 3D PROFILE CARD with mouse tilt ───────────────────────── */
-const ProfileCard = () => {
+/* ─── 3D PROFILE BADGE WITH PEDESTAL & ORBITING GLASS BADGES ─── */
+const ProfileCard3D = () => {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const rafRef = useRef(null);
 
-  const MAX_TILT = 5; // degrees
+  const MAX_TILT = 5; // degrees for professional subtlety
 
   const handleMouseMove = useCallback((e) => {
-    if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch
+    if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch devices
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
@@ -140,36 +93,77 @@ const ProfileCard = () => {
     setTilt({ x: 0, y: 0 });
   };
 
-  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
+  useEffect(() => () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  }, []);
 
-  const transform = hovered
-    ? `perspective(700px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`
-    : `perspective(700px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1)`;
+  const cardTransform = hovered
+    ? `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`
+    : `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1)`;
 
   return (
-    <div className="about-profile-scene" data-aos="fade-right">
-      {/* Floating pedestal glow */}
-      <div className="about-profile-glow" aria-hidden="true"/>
+    <div className="about-3d-scene" data-aos="fade-right">
+      {/* Background ambient lighting */}
+      <div className="about-pedestal-glow" aria-hidden="true" />
 
-      <div className="relative pt-16">
-        {/* Connector cable at top */}
-        <div className="absolute left-1/2 top-0 h-20 w-px -translate-x-1/2 bg-gradient-to-b from-[#38BDF8]/80 to-[#38BDF8]/10"/>
-        <div className="absolute left-1/2 top-14 z-20 h-8 w-20 -translate-x-1/2 rounded-b-lg border border-[#38BDF8]/40 bg-[#0B2345] shadow-[0_0_16px_rgba(56,189,248,0.18)]"/>
+      {/* Orbiting Glass Icons & Rings */}
+      <div className="about-orbit-container" aria-hidden="true">
+        {/* Orbital Track Ring 1 */}
+        <div className="about-orbit-ring about-orbit-ring--1" />
+        {/* Orbital Track Ring 2 */}
+        <div className="about-orbit-ring about-orbit-ring--2" />
 
-        {/* The 3D card */}
+        {/* Orbiting Icon 1: Salesforce Cloud (Left) */}
+        <div className="about-orbit-node about-orbit-node--sf">
+          <div className="about-orbit-glass-orb">
+            <img src={salesforceLogo} alt="" className="h-5 w-5 object-contain" />
+          </div>
+        </div>
+
+        {/* Orbiting Icon 2: Code Bracket (Lower Left) */}
+        <div className="about-orbit-node about-orbit-node--code">
+          <div className="about-orbit-glass-orb text-[#38bdf8] font-bold text-xs">
+            &lt;/&gt;
+          </div>
+        </div>
+
+        {/* Orbiting Icon 3: Cloud Badge (Top Right) */}
+        <div className="about-orbit-node about-orbit-node--cloud">
+          <div className="about-orbit-glass-orb">
+            <svg className="h-4 w-4 text-[#38bdf8]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Floating Mini Glowing Cube */}
+        <div className="about-mini-cube" />
+      </div>
+
+      {/* Badge Frame Holder */}
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Top Clip / Hanging Mechanism */}
+        <div className="about-badge-clip">
+          <div className="about-badge-clip-bar" />
+        </div>
+
+        {/* The 3D Acrylic ID Card */}
         <div
           ref={cardRef}
-          className="about-profile-card"
-          style={{ transform, willChange: 'transform' }}
+          className="about-id-card"
+          style={{ transform: cardTransform, willChange: 'transform' }}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={handleMouseLeave}
         >
-          {/* Edge glow border */}
-          <div className="about-profile-card-glow" aria-hidden="true"/>
+          {/* Glass edge neon glow */}
+          <div className="about-id-card-glow" aria-hidden="true" />
+          
+          {/* Subtle light sheen sweep */}
+          <div className="about-id-card-sheen" aria-hidden="true" />
 
-          {/* Photo */}
-          <div className="mb-4 overflow-hidden rounded-lg border-2 border-[#38BDF8]/50 shadow-[0_0_18px_rgba(56,189,248,0.22)]">
+          {/* Photo Container */}
+          <div className="about-photo-wrapper">
             <img
               src={aboutPhoto}
               alt={personalInfo.name}
@@ -177,116 +171,256 @@ const ProfileCard = () => {
             />
           </div>
 
-          {/* Name row */}
-          <div className="flex items-end justify-between gap-4">
+          {/* Badge Footer: Name & Details */}
+          <div className="about-badge-footer">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#38BDF8] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]">
-                {personalInfo.firstName}
-              </p>
-              <p className="mt-1 text-xs font-semibold text-[#DCEEFF]/75">Computer Science</p>
+              <p className="about-badge-name">{personalInfo.firstName}</p>
+              <p className="about-badge-subtitle">Computer Science</p>
             </div>
-            <span className="h-11 w-11 rounded-lg border border-[#38BDF8]/30 bg-[#1769D1]/18 shadow-[0_0_10px_rgba(56,189,248,0.14)]"/>
+            {/* Glowing cyan status orb */}
+            <div className="about-status-dot-glow" aria-label="Status: Active" />
           </div>
+        </div>
 
-          {/* Reflective sheen that moves across */}
-          <div className="about-profile-sheen" aria-hidden="true"/>
+        {/* 3D Pedestal / Base Platform */}
+        <div className="about-pedestal-base" aria-hidden="true">
+          <div className="about-pedestal-ring about-pedestal-ring--top" />
+          <div className="about-pedestal-ring about-pedestal-ring--mid" />
+          <div className="about-pedestal-cylinder" />
+          <div className="about-pedestal-floor-glow" />
         </div>
       </div>
     </div>
   );
 };
 
-/* ─── MAIN ABOUT SECTION ─────────────────────────────────────── */
-const About = () => {
-  const technologies = [
-    { name: 'Salesforce Administration', details: 'CRM Configuration',               icon: <SalesforceIcon/> },
-    { name: 'Service Cloud',             details: 'Cases · Entitlements · SLAs',      icon: <CloudStackIcon/> },
-    { name: 'Flow Automation',           details: 'Record-Triggered · Screen Flows',  icon: <CodeStackIcon label="F"/> },
-    { name: 'Agentforce',               details: 'Salesforce AI',                    icon: <CodeStackIcon label="AI"/> },
-  ];
-
+/* ─── 3D CLOUD & SERVER INFRASTRUCTURE SCENE ─────────────────── */
+const CloudServerInfrastructure3D = () => {
   return (
-    <section
-      id="about"
-      className="relative w-full overflow-hidden bg-[#061B3A] px-6 pb-28 pt-24 text-white md:px-12 md:pb-32 md:pt-28"
-    >
-      {/* ── Ambient background glows ── */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        {/* decorative cloud outlines */}
-        <svg className="absolute -left-32 top-12 h-80 w-[520px] opacity-[0.08]" viewBox="0 0 520 260" fill="none">
-          <path d="M90 165c0-38 31-69 69-69 17-35 52-53 88-53 54 0 99 45 99 99 36 0 63 27 63 63s-27 63-63 63H98c-45 0-81-36-81-81 0-11 2-20 6-30 19 7 42 8 67 8Z" fill="#DCEEFF"/>
-        </svg>
-        <svg className="absolute -right-28 bottom-24 h-72 w-[480px] opacity-[0.08]" viewBox="0 0 520 260" fill="none">
-          <path d="M90 165c0-38 31-69 69-69 17-35 52-53 88-53 54 0 99 45 99 99 36 0 63 27 63 63s-27 63-63 63H98c-45 0-81-36-81-81 0-11 2-20 6-30 19 7 42 8 67 8Z" fill="#38BDF8"/>
-        </svg>
-        {/* Radial blue glow behind left card */}
-        <div className="about-bg-glow about-bg-glow--left"/>
-        {/* Radial glow behind right illustration */}
-        <div className="about-bg-glow about-bg-glow--right"/>
-        {/* Subtle floating particles */}
-        <div className="about-particles">
-          <span/><span/><span/><span/><span/><span/>
+    <div className="about-infra-scene" data-aos="fade-left">
+      {/* Ambient background glow */}
+      <div className="about-infra-glow" aria-hidden="true" />
+
+      {/* ── 3D Floating Volumetric Cloud ── */}
+      <div className="about-3d-cloud-wrap">
+        <div className="about-3d-cloud">
+          {/* SVG Layered Cloud with volumetric shading */}
+          <svg viewBox="0 0 280 170" fill="none" className="w-full h-full drop-shadow-[0_15px_30px_rgba(1,118,211,0.5)]">
+            <defs>
+              <linearGradient id="cloudGrad" x1="140" y1="10" x2="140" y2="160" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#7ad3ff" />
+                <stop offset="35%" stopColor="#2596f3" />
+                <stop offset="75%" stopColor="#0d61d0" />
+                <stop offset="100%" stopColor="#07398b" />
+              </linearGradient>
+              <linearGradient id="cloudHighlight" x1="70" y1="15" x2="210" y2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#67e8f9" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            {/* Cloud Main Body */}
+            <path
+              d="M70 145c-28 0-50-20-50-45 0-21 16-39 39-44 5-26 30-46 61-46 22 0 42 10 53 27 7-4 16-7 25-7 27 0 49 20 51 46 20 4 35 21 35 41 0 24-22 43-50 43H70z"
+              fill="url(#cloudGrad)"
+            />
+            {/* Glossy top highlight */}
+            <path
+              d="M72 140c-24 0-43-16-43-37 0-18 14-33 34-37 5-24 27-41 55-41 20 0 38 9 48 24 7-4 15-6 23-6 24 0 43 17 45 39 17 4 30 18 30 35 0 20-19 36-43 36H72z"
+              fill="url(#cloudHighlight)"
+              opacity="0.6"
+            />
+          </svg>
+        </div>
+
+        {/* ── Data Laser Beams from Cloud to Server ── */}
+        <div className="about-data-beams">
+          <div className="about-beam-line about-beam-line--1"><span className="about-beam-particle" /></div>
+          <div className="about-beam-line about-beam-line--2"><span className="about-beam-particle" /></div>
+          <div className="about-beam-line about-beam-line--3"><span className="about-beam-particle" /></div>
+          <div className="about-beam-line about-beam-line--4"><span className="about-beam-particle" /></div>
+          <div className="about-beam-line about-beam-line--5"><span className="about-beam-particle" /></div>
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[280px_minmax(0,1fr)_300px] xl:gap-10">
-
-          {/* ── Profile card (3D) ── */}
-          <ProfileCard/>
-
-          {/* ── Text block ── */}
-          <div data-aos="fade-up" data-aos-delay="150" className="max-w-2xl text-center lg:text-left">
-            <p className="mb-4 text-sm font-bold uppercase tracking-[0.28em] text-[#38BDF8]">About me</p>
-            <h2 className="about-heading mb-6 text-5xl font-black leading-none text-white md:text-6xl">
-              {aboutContent.heading}
-            </h2>
-            <div className="space-y-4 text-base leading-[1.75] text-[#DCEEFF] md:text-lg">
-              {aboutContent.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+      {/* ── 3D Server Blade Units ── */}
+      <div className="about-server-cluster">
+        {/* Top Server Unit */}
+        <div className="about-server-unit about-server-unit--top">
+          <div className="about-server-face">
+            <div className="about-server-leds">
+              <span className="about-led about-led--cyan" />
+              <span className="about-led about-led--blue" />
             </div>
-            {/* Tech tag pills – glassmorphism */}
-            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-              {aboutContent.techStack.map((item, i) => (
-                <span
-                  key={item}
-                  className="about-tech-pill"
-                  style={{ transitionDelay: `${i * 40}ms` }}
-                >
-                  {item}
-                </span>
-              ))}
+            <div className="about-server-vents">
+              <span /><span /><span />
             </div>
-          </div>
-
-          {/* ── Cloud / Server illustration ── */}
-          <div
-            data-aos="fade-left"
-            data-aos-delay="250"
-            className="mx-auto h-[360px] w-full max-w-[360px] lg:col-span-2 lg:h-[300px] xl:col-span-1 xl:h-[420px]"
-          >
-            <CloudInfrastructure/>
           </div>
         </div>
 
-        {/* ── Technical Stack grid ── */}
-        <div data-aos="fade-up" data-aos-delay="350" className="mt-20 border-t border-[#38BDF8]/20 pt-14">
-          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.28em] text-[#38BDF8]">Technical stack</p>
-              <h3 className="about-stack-heading text-3xl font-black text-white md:text-4xl">
-                Salesforce-first technical stack
-              </h3>
+        {/* Mid-Left Server Unit */}
+        <div className="about-server-unit about-server-unit--mid-left">
+          <div className="about-server-face">
+            <div className="about-server-leds">
+              <span className="about-led about-led--cyan" />
+              <span className="about-led about-led--blue" />
             </div>
-            <p className="max-w-xl text-sm leading-6 text-[#DCEEFF]/75 md:text-right">
-              Administration, service workflows, automation, and Agentforce, supported by cloud and data skills.
-            </p>
+            <div className="about-server-vents">
+              <span /><span /><span />
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {technologies.map((tech, i) => (
-              <StackCard key={tech.name} icon={tech.icon} name={tech.name} details={tech.details} index={i}/>
-            ))}
+        </div>
+
+        {/* Mid-Right Server Unit */}
+        <div className="about-server-unit about-server-unit--mid-right">
+          <div className="about-server-face">
+            <div className="about-server-leds">
+              <span className="about-led about-led--cyan" />
+              <span className="about-led about-led--blue" />
+            </div>
+            <div className="about-server-vents">
+              <span /><span /><span />
+            </div>
+          </div>
+        </div>
+
+        {/* Base Server Unit Stack */}
+        <div className="about-server-unit about-server-unit--base">
+          <div className="about-server-face">
+            <div className="about-server-leds">
+              <span className="about-led about-led--cyan" />
+              <span className="about-led about-led--cyan" />
+            </div>
+            <div className="about-server-vents">
+              <span /><span /><span /><span />
+            </div>
+          </div>
+        </div>
+
+        {/* Server Base Holographic Ring Platform */}
+        <div className="about-server-platform">
+          <div className="about-server-holo-ring about-server-holo-ring--outer" />
+          <div className="about-server-holo-ring about-server-holo-ring--inner" />
+          <div className="about-server-floor-glow" />
+        </div>
+      </div>
+
+      {/* ── Floating Glass UI Cards ── */}
+      {/* Left Analytics Card */}
+      <div className="about-floating-card about-floating-card--left">
+        <div className="about-floating-card-inner">
+          <div className="flex items-end gap-1.5 h-7">
+            <div className="w-2.5 h-3.5 rounded-sm bg-[#38bdf8]/40" />
+            <div className="w-2.5 h-5 rounded-sm bg-[#38bdf8]/70" />
+            <div className="w-2.5 h-7 rounded-sm bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
+          </div>
+        </div>
+      </div>
+
+      {/* Right Task List Card */}
+      <div className="about-floating-card about-floating-card--right">
+        <div className="about-floating-card-inner">
+          <div className="space-y-1.5 w-10">
+            <div className="flex items-center gap-1">
+              <div className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
+              <div className="h-1 w-7 rounded bg-[#38bdf8]/50" />
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
+              <div className="h-1 w-6 rounded bg-[#38bdf8]/30" />
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]" />
+              <div className="h-1 w-5 rounded bg-[#38bdf8]/20" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating 3D Micro Cubes */}
+      <div className="about-floating-cube about-floating-cube--1" />
+      <div className="about-floating-cube about-floating-cube--2" />
+    </div>
+  );
+};
+
+/* ─── MAIN ABOUT SECTION ─────────────────────────────────────── */
+const About = () => {
+  return (
+    <section
+      id="about"
+      className="relative w-full overflow-hidden bg-[#051026] px-6 pb-28 pt-28 text-white md:px-12 md:pb-36 md:pt-32"
+    >
+      {/* ── Ambient Background Atmosphere ── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        {/* Top-Left Volumetric Cloud Glow */}
+        <div className="about-vol-cloud about-vol-cloud--tl" />
+        {/* Top-Right Volumetric Cloud Glow */}
+        <div className="about-vol-cloud about-vol-cloud--tr" />
+        {/* Bottom-Left Volumetric Cloud Glow */}
+        <div className="about-vol-cloud about-vol-cloud--bl" />
+        {/* Bottom-Right Volumetric Cloud Glow */}
+        <div className="about-vol-cloud about-vol-cloud--br" />
+
+        {/* Center-Left Radial Glow */}
+        <div className="about-bg-glow about-bg-glow--left" />
+        {/* Center-Right Radial Glow */}
+        <div className="about-bg-glow about-bg-glow--right" />
+
+        {/* Floating Particles */}
+        <div className="about-particles">
+          <span /><span /><span /><span /><span /><span />
+        </div>
+      </div>
+
+      {/* ── Main Container ── */}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-8 xl:grid-cols-[300px_minmax(0,1fr)_320px] xl:gap-8">
+          
+          {/* Left: 3D ID Badge Card Scene */}
+          <div className="flex justify-center">
+            <ProfileCard3D />
+          </div>
+
+          {/* Center: About Content & Skill Badges */}
+          <div data-aos="fade-up" data-aos-delay="150" className="text-center lg:text-left">
+            {/* Eyebrow */}
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-[#38bdf8] drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">
+              ABOUT ME
+            </p>
+
+            {/* Title: "About me" */}
+            <h2 className="about-main-title mb-6 text-4xl font-black leading-tight text-white sm:text-5xl md:text-6xl">
+              About <span className="about-title-highlight">me</span>
+            </h2>
+
+            {/* Paragraphs */}
+            <div className="space-y-4 text-sm leading-[1.8] text-[#d1e5ff] md:text-base md:leading-[1.85]">
+              {aboutContent.paragraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
+
+            {/* Skill Badges (Pills) */}
+            <div className="mt-8 flex flex-wrap justify-center gap-2.5 lg:justify-start">
+              {aboutContent.techStack.map((item, i) => (
+                <div
+                  key={item}
+                  className="about-skill-pill group"
+                  style={{ transitionDelay: `${i * 35}ms` }}
+                >
+                  <span className="about-pill-icon">{getPillIcon(item)}</span>
+                  <span className="about-pill-text">{item}</span>
+                  {/* Subtle inner glass shimmer */}
+                  <div className="about-pill-shimmer" aria-hidden="true" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: 3D Cloud & Server Infrastructure Scene */}
+          <div className="flex justify-center lg:col-span-2 xl:col-span-1">
+            <CloudServerInfrastructure3D />
           </div>
         </div>
       </div>

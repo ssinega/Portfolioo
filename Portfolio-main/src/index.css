@@ -998,376 +998,679 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   PREMIUM 3D ENHANCEMENTS – ABOUT SECTION
+   PREMIUM 3D ENHANCEMENTS – ABOUT SECTION (MATCHING SCREENSHOT 2)
 ════════════════════════════════════════════════════════════════ */
 
-/* ── Ambient background glows ──────────────────────────────── */
+/* ── Ambient Background Atmosphere ─────────────────────────── */
+.about-vol-cloud {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(65px);
+  opacity: 0.18;
+}
+.about-vol-cloud--tl {
+  top: -60px; left: -100px;
+  width: 460px; height: 320px;
+  background: radial-gradient(circle, #38bdf8 0%, #1769d1 60%, transparent 80%);
+}
+.about-vol-cloud--tr {
+  top: -80px; right: -120px;
+  width: 520px; height: 360px;
+  background: radial-gradient(circle, #38bdf8 0%, #0d52b4 60%, transparent 80%);
+}
+.about-vol-cloud--bl {
+  bottom: -60px; left: -80px;
+  width: 480px; height: 300px;
+  background: radial-gradient(circle, #1769d1 0%, #051a3d 70%, transparent 80%);
+}
+.about-vol-cloud--br {
+  bottom: -70px; right: -90px;
+  width: 520px; height: 340px;
+  background: radial-gradient(circle, #38bdf8 0%, #1769d1 60%, transparent 80%);
+}
+
 .about-bg-glow {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(90px);
+  filter: blur(85px);
 }
 .about-bg-glow--left {
-  width: 360px; height: 360px;
-  left: -80px; top: 10%;
-  background: radial-gradient(circle, rgba(23,105,209,0.22) 0%, transparent 70%);
-  animation: aboutGlowPulse 8s ease-in-out infinite;
+  width: 380px; height: 380px;
+  left: 2%; top: 25%;
+  background: radial-gradient(circle, rgba(1,118,211,0.24) 0%, rgba(56,189,248,0.12) 50%, transparent 75%);
+  animation: aboutGlowPulseSimple 7s ease-in-out infinite;
 }
 .about-bg-glow--right {
-  width: 420px; height: 420px;
-  right: -80px; bottom: 15%;
-  background: radial-gradient(circle, rgba(56,189,248,0.18) 0%, transparent 70%);
-  animation: aboutGlowPulse 10s ease-in-out infinite reverse;
+  width: 440px; height: 440px;
+  right: 2%; bottom: 20%;
+  background: radial-gradient(circle, rgba(56,189,248,0.22) 0%, rgba(1,118,211,0.15) 50%, transparent 75%);
+  animation: aboutGlowPulseSimple 9s ease-in-out infinite reverse;
 }
 
-/* ── Floating particles in about background ─────────────────── */
+/* Floating ambient particles */
 .about-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .about-particles span {
   position: absolute;
   border-radius: 50%;
-  background: rgba(56,189,248,0.55);
-  box-shadow: 0 0 8px 2px rgba(56,189,248,0.30);
-  animation: aboutPtFloat 9s ease-in-out infinite;
+  background: #38bdf8;
+  box-shadow: 0 0 10px 2px rgba(56,189,248,0.6);
+  animation: aboutPtFloat 8s ease-in-out infinite;
 }
-.about-particles span:nth-child(1) { width:4px;height:4px; left:8%;  top:20%; opacity:.50; }
-.about-particles span:nth-child(2) { width:3px;height:3px; left:25%; top:60%; opacity:.38; animation-delay:-3s; }
-.about-particles span:nth-child(3) { width:5px;height:5px; left:76%; top:14%; opacity:.44; animation-delay:-5.5s; }
-.about-particles span:nth-child(4) { width:3px;height:3px; left:88%; top:55%; opacity:.36; animation-delay:-1.8s; }
-.about-particles span:nth-child(5) { width:4px;height:4px; left:55%; top:78%; opacity:.42; animation-delay:-7s; }
-.about-particles span:nth-child(6) { width:3px;height:3px; left:42%; top:34%; opacity:.32; animation-delay:-4.2s; }
+.about-particles span:nth-child(1) { width:4px;height:4px; left:12%; top:22%; opacity:.6; }
+.about-particles span:nth-child(2) { width:3px;height:3px; left:28%; top:65%; opacity:.45; animation-delay:-2.5s; }
+.about-particles span:nth-child(3) { width:5px;height:5px; left:74%; top:18%; opacity:.55; animation-delay:-5s; }
+.about-particles span:nth-child(4) { width:3px;height:3px; left:86%; top:58%; opacity:.4; animation-delay:-1.5s; }
+.about-particles span:nth-child(5) { width:4px;height:4px; left:52%; top:82%; opacity:.5; animation-delay:-6.5s; }
+.about-particles span:nth-child(6) { width:3px;height:3px; left:40%; top:30%; opacity:.4; animation-delay:-3.8s; }
 
-/* ── 3D Profile card scene ──────────────────────────────────── */
-.about-profile-scene {
+/* ── 3D Profile ID Badge Scene ──────────────────────────────── */
+.about-3d-scene {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  perspective: 1000px;
 }
 
-/* Glowing pedestal behind card */
-.about-profile-glow {
+.about-pedestal-glow {
   position: absolute;
-  bottom: -20px; left: 50%;
+  bottom: 0; left: 50%;
   transform: translateX(-50%);
-  width: 240px; height: 60px;
+  width: 280px; height: 70px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(23,105,209,0.38) 0%, transparent 72%);
-  filter: blur(28px);
+  background: radial-gradient(ellipse, rgba(56,189,248,0.45) 0%, rgba(1,118,211,0.2) 50%, transparent 75%);
+  filter: blur(24px);
   pointer-events: none;
-  animation: aboutGlowPulse 5s ease-in-out infinite;
+  animation: pedestalGlowBreathe 5s ease-in-out infinite;
 }
 
-/* The actual 3D card */
-.about-profile-card {
+/* ── Orbiting Rings & Glass Orbs around ID Card ─────────────── */
+.about-orbit-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.about-orbit-ring {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(56,189,248,0.35);
+  box-shadow: 0 0 12px rgba(56,189,248,0.2), inset 0 0 8px rgba(56,189,248,0.1);
+  transform-style: preserve-3d;
+}
+.about-orbit-ring--1 {
+  top: 18%;
+  width: 320px; height: 160px;
+  transform: translateX(-50%) rotateX(68deg) rotateY(-18deg);
+  animation: orbitSpin1 24s linear infinite;
+}
+.about-orbit-ring--2 {
+  top: 36%;
+  width: 340px; height: 150px;
+  transform: translateX(-50%) rotateX(72deg) rotateY(22deg);
+  border-color: rgba(56,189,248,0.22);
+}
+
+.about-orbit-node {
+  position: absolute;
+  pointer-events: auto;
+}
+.about-orbit-node--sf {
+  left: -14px; top: 40%;
+  animation: floatOrb 5s ease-in-out infinite;
+}
+.about-orbit-node--code {
+  left: 2px; bottom: 24%;
+  animation: floatOrb 6s ease-in-out infinite 1.5s;
+}
+.about-orbit-node--cloud {
+  right: -10px; top: 22%;
+  animation: floatOrb 5.5s ease-in-out infinite 0.8s;
+}
+
+.about-orbit-glass-orb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(13, 37, 74, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(56,189,248,0.6);
+  box-shadow:
+    0 0 18px rgba(56,189,248,0.4),
+    inset 0 1px 2px rgba(255,255,255,0.4),
+    inset 0 0 12px rgba(1,118,211,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-orbit-glass-orb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 26px rgba(56,189,248,0.7), inset 0 0 16px rgba(56,189,248,0.6);
+}
+
+.about-mini-cube {
+  position: absolute;
+  left: -24px; bottom: 12%;
+  width: 14px; height: 14px;
+  background: linear-gradient(135deg, rgba(56,189,248,0.6), rgba(1,118,211,0.4));
+  border: 1px solid rgba(56,189,248,0.8);
+  box-shadow: 0 0 10px rgba(56,189,248,0.5);
+  transform: rotate(45deg);
+  animation: floatOrb 7s ease-in-out infinite 2s;
+}
+
+/* ── ID Card Top Clip ───────────────────────────────────────── */
+.about-badge-clip {
   position: relative;
-  width: 270px;
-  /* default resting position: slightly rotated for depth */
-  transform: perspective(700px) rotateY(-3deg) rotate(-3deg);
-  border-radius: 12px;
-  border: 1.5px solid rgba(56,189,248,0.40);
-  background: #0B2345;
-  padding: 1rem;
-  transition: transform 400ms cubic-bezier(0.2,0.8,0.2,1),
-              box-shadow 400ms ease;
-  /* layered depth shadows */
+  z-index: 12;
+  width: 48px; height: 16px;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, #0284c7, #034b94);
+  border: 1px solid rgba(56,189,248,0.7);
+  box-shadow: 0 0 12px rgba(56,189,248,0.5);
+  margin-bottom: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-badge-clip-bar {
+  width: 26px; height: 4px;
+  border-radius: 2px;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+/* ── The 3D ID Badge Card ───────────────────────────────────── */
+.about-id-card {
+  position: relative;
+  width: 230px;
+  border-radius: 18px;
+  border: 2px solid rgba(56,189,248,0.55);
+  background: rgba(7, 24, 52, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 12px;
+  transition: transform 400ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 400ms ease;
   box-shadow:
-    0 6px 14px rgba(0,0,0,0.30),
-    0 18px 40px rgba(0,0,0,0.28),
-    0 36px 70px rgba(0,0,0,0.20),
-    0 0 0 1px rgba(56,189,248,0.12),
-    0 0 32px rgba(56,189,248,0.10);
-  animation: profileFloat 6s ease-in-out infinite;
+    0 12px 28px rgba(0,0,0,0.5),
+    0 24px 54px rgba(1,118,211,0.25),
+    0 0 32px rgba(56,189,248,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+  animation: idCardFloat 6s ease-in-out infinite;
   overflow: hidden;
+  z-index: 10;
 }
-@media (min-width: 640px) { .about-profile-card { width: 300px; } }
+@media (min-width: 640px) {
+  .about-id-card { width: 250px; padding: 14px; }
+}
 
-.about-profile-card:hover {
+.about-id-card:hover {
   box-shadow:
-    0 10px 20px rgba(0,0,0,0.34),
-    0 28px 56px rgba(0,0,0,0.32),
-    0 52px 90px rgba(0,0,0,0.24),
-    0 0 0 1.5px rgba(56,189,248,0.36),
-    0 0 56px rgba(56,189,248,0.20);
+    0 16px 36px rgba(0,0,0,0.6),
+    0 32px 70px rgba(1,118,211,0.35),
+    0 0 44px rgba(56,189,248,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
-/* Cyan edge glow ring */
-.about-profile-card-glow {
+.about-id-card-glow {
   position: absolute;
   inset: -2px;
-  border-radius: 14px;
-  border: 1.5px solid rgba(56,189,248,0.30);
-  box-shadow:
-    inset 0 0 24px rgba(56,189,248,0.08),
-    0 0 28px rgba(56,189,248,0.16);
+  border-radius: 20px;
+  border: 1px solid rgba(56,189,248,0.45);
+  box-shadow: inset 0 0 20px rgba(56,189,248,0.12), 0 0 24px rgba(56,189,248,0.25);
   pointer-events: none;
   animation: cardEdgeGlow 4s ease-in-out infinite;
 }
 
-/* Reflective glass sheen that sweeps across */
-.about-profile-sheen {
+.about-id-card-sheen {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(255,255,255,0.04) 30%,
-    rgba(255,255,255,0.10) 50%,
-    rgba(255,255,255,0.04) 70%,
-    transparent 100%
-  );
+  background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.03) 30%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.03) 70%, transparent 100%);
   transform: translateX(-120%);
-  animation: sheenSweep 6s ease-in-out infinite;
+  animation: sheenSweep 6.5s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* ── Cloud illustration wrapper ────────────────────────────── */
-.about-cloud-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.about-photo-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1.5px solid rgba(56,189,248,0.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 16px rgba(56,189,248,0.2);
+  background: #041228;
 }
 
-/* Pulsing glow behind cloud */
-.about-cloud-glow {
-  position: absolute;
-  top: 10%; left: 50%;
-  transform: translateX(-50%);
-  width: 180px; height: 80px;
+.about-badge-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 2px;
+}
+.about-badge-name {
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56,189,248,0.6);
+  line-height: 1.1;
+}
+.about-badge-subtitle {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #93c5fd;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+.about-status-dot-glow {
+  width: 12px; height: 12px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(23,105,209,0.40) 0%, transparent 72%);
-  filter: blur(32px);
-  animation: aboutGlowPulse 5s ease-in-out infinite;
+  background: #38bdf8;
+  box-shadow: 0 0 12px #38bdf8, 0 0 20px #0284c7;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* ── 3D Pedestal Base ───────────────────────────────────────── */
+.about-pedestal-base {
+  position: relative;
+  width: 240px;
+  height: 54px;
+  margin-top: -18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   pointer-events: none;
 }
-
-.about-cloud-svg { width: 100%; height: 100%; }
-
-/* Cloud shape floats gently */
-.about-cloud-float {
-  animation: cloudFloat 7s ease-in-out infinite;
-  transform-origin: center;
+.about-pedestal-ring {
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 16px #38bdf8, inset 0 0 12px #0284c7;
+  transform: perspective(300px) rotateX(72deg);
 }
-
-/* ── Status dot pulse ───────────────────────────────────────── */
-.about-dot-pulse {
-  animation: dotPulse 2.2s ease-in-out infinite;
-  transform-origin: center;
+.about-pedestal-ring--top {
+  width: 190px; height: 50px;
+  background: radial-gradient(ellipse, rgba(56,189,248,0.3) 0%, rgba(2,132,199,0.1) 60%, transparent 80%);
 }
-
-/* ── About heading accent ───────────────────────────────────── */
-.about-heading {
-  position: relative;
-  display: inline-block;
+.about-pedestal-ring--mid {
+  width: 230px; height: 58px;
+  margin-top: -38px;
+  border-color: rgba(56,189,248,0.6);
+  box-shadow: 0 0 24px rgba(56,189,248,0.45);
 }
-.about-heading::after {
-  content: '';
+.about-pedestal-cylinder {
+  width: 220px; height: 20px;
+  margin-top: -24px;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  background: linear-gradient(180deg, rgba(6,25,54,0.9), rgba(2,10,24,0.95));
+  border: 1px solid rgba(56,189,248,0.35);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.6);
+}
+.about-pedestal-floor-glow {
   position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0;
-  height: 3px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #38BDF8, #1769D1, transparent);
-  transition: width 900ms cubic-bezier(0.4,0,0.2,1);
-}
-/* Trigger via AOS parent entering viewport */
-[data-aos="fade-up"].aos-animate .about-heading::after,
-.about-heading.aos-animate::after {
-  width: 100%;
-}
-/* Direct trigger when parent is animated */
-.about-heading-visible::after { width: 100%; }
-
-/* ── Stack heading ──────────────────────────────────────────── */
-.about-stack-heading {
-  position: relative;
-  display: inline-block;
+  bottom: -10px;
+  width: 260px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(56,189,248,0.35) 0%, transparent 70%);
+  filter: blur(14px);
 }
 
-/* ── Tech stack pills (glassmorphism) ──────────────────────── */
-.about-tech-pill {
+/* ── About Text & Typography ────────────────────────────────── */
+.about-main-title {
+  letter-spacing: -0.02em;
+}
+.about-title-highlight {
+  color: #38bdf8;
+  text-shadow: 0 0 24px rgba(56,189,248,0.65), 0 0 48px rgba(1,118,211,0.4);
+}
+
+/* ── Skill Pills (Glassmorphism Badges) ─────────────────────── */
+.about-skill-pill {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   border-radius: 9999px;
-  border: 1px solid rgba(56,189,248,0.28);
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: #DCEEFF;
+  border: 1px solid rgba(56,189,248,0.35);
+  background: rgba(10, 32, 66, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 16px;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    0 4px 12px rgba(0,0,0,0.20),
-    0 0 0 0 rgba(56,189,248,0);
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 4px 14px rgba(0,0,0,0.3),
+    0 0 12px rgba(56,189,248,0.08);
   transition:
     transform 280ms cubic-bezier(0.2,0.8,0.2,1),
     box-shadow 280ms ease,
     border-color 280ms ease,
-    color 280ms ease;
+    background 280ms ease;
   cursor: default;
-}
-.about-tech-pill:hover {
-  transform: translateY(-3px) scale(1.04);
-  border-color: rgba(56,189,248,0.65);
-  color: #fff;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    0 8px 20px rgba(0,0,0,0.26),
-    0 0 16px rgba(56,189,248,0.22);
-}
-
-/* ════════════════════════════════════════════════════════════════
-   PREMIUM SKILL CARDS – TechnicalSkills section
-════════════════════════════════════════════════════════════════ */
-.skill-card {
   position: relative;
   overflow: hidden;
-  border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 1.5rem;
-  transition:
-    transform 350ms cubic-bezier(0.2,0.8,0.2,1),
-    box-shadow 350ms ease,
-    border-color 350ms ease;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 4px 16px rgba(0,0,0,0.24);
 }
-.skill-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: rgba(56,189,248,0.35);
+.about-skill-pill:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(56,189,248,0.75);
+  background: rgba(14, 44, 90, 0.85);
   box-shadow:
-    inset 0 1px 0 rgba(56,189,248,0.10),
-    0 20px 50px rgba(23,105,209,0.14),
-    0 0 32px rgba(56,189,248,0.10);
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 8px 22px rgba(0,0,0,0.35),
+    0 0 20px rgba(56,189,248,0.3);
 }
-
-/* Inner glass shimmer */
-.skill-card-shimmer {
+.about-pill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-pill-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  transition: color 250ms ease;
+}
+.about-skill-pill:hover .about-pill-text {
+  color: #ffffff;
+}
+.about-pill-shimmer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(255,255,255,0.03) 40%,
-    rgba(255,255,255,0.07) 50%,
-    rgba(255,255,255,0.03) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.06) 55%, transparent 100%);
   transform: translateX(-120%);
   pointer-events: none;
-  transition: none;
 }
-.skill-card:hover .skill-card-shimmer {
+.about-skill-pill:hover .about-pill-shimmer {
   transform: translateX(120%);
   transition: transform 600ms ease;
 }
 
-/* Skill card title glow on hover */
-.skill-card-title {
-  transition: color 300ms, text-shadow 300ms;
-}
-.skill-card:hover .skill-card-title {
-  color: #38BDF8;
-  text-shadow: 0 0 16px rgba(56,189,248,0.30);
+/* ── 3D Cloud & Server Infrastructure Scene (Right) ─────────── */
+.about-infra-scene {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 24px;
 }
 
-/* ── Skill badge pills ──────────────────────────────────────── */
-.skill-badge {
-  display: inline-block;
-  border-radius: 9999px;
-  border: 1px solid rgba(56,189,248,0.18);
-  background: rgba(255,255,255,0.06);
-  padding: 0.45rem 0.85rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.82);
-  transition:
-    transform 280ms cubic-bezier(0.2,0.8,0.2,1),
-    box-shadow 280ms ease,
-    border-color 280ms ease,
-    color 280ms ease,
-    background 280ms ease;
-  cursor: default;
+.about-infra-glow {
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(1,118,211,0.35) 0%, rgba(56,189,248,0.15) 50%, transparent 75%);
+  filter: blur(36px);
+  pointer-events: none;
+  animation: pedestalGlowBreathe 6s ease-in-out infinite;
+}
+
+/* 3D Volumetric Cloud */
+.about-3d-cloud-wrap {
+  position: absolute;
+  top: 10px;
+  width: 220px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+.about-3d-cloud {
+  width: 100%;
+  height: 120px;
+  animation: cloudFloat3D 6s ease-in-out infinite;
+}
+
+/* Data laser beams */
+.about-data-beams {
+  position: absolute;
+  top: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.about-beam-line {
+  position: relative;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(56,189,248,0.8) 0%, rgba(1,118,211,0.2) 100%);
+  box-shadow: 0 0 6px rgba(56,189,248,0.6);
+}
+.about-beam-particle {
+  position: absolute;
+  top: 0; left: -2px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: beamStream 1.8s ease-in infinite;
+}
+.about-beam-line--1 .about-beam-particle { animation-delay: 0s; }
+.about-beam-line--2 .about-beam-particle { animation-delay: 0.35s; }
+.about-beam-line--3 .about-beam-particle { animation-delay: 0.7s; }
+.about-beam-line--4 .about-beam-particle { animation-delay: 0.2s; }
+.about-beam-line--5 .about-beam-particle { animation-delay: 0.55s; }
+
+/* ── 3D Server Blade Units ── */
+.about-server-cluster {
+  position: relative;
+  width: 220px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 8;
+}
+
+.about-server-unit {
+  position: absolute;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #071f40, #041024);
+  border: 1.5px solid rgba(56,189,248,0.45);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 2px 8px rgba(0,0,0,0.18);
+    0 8px 20px rgba(0,0,0,0.55),
+    0 0 16px rgba(1,118,211,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
 }
-.skill-badge:hover {
-  transform: translateY(-3px) scale(1.03);
-  border-color: rgba(56,189,248,0.55);
-  background: rgba(56,189,248,0.10);
-  color: #fff;
-  box-shadow:
-    inset 0 1px 0 rgba(56,189,248,0.14),
-    0 6px 18px rgba(0,0,0,0.22),
-    0 0 12px rgba(56,189,248,0.18);
+.about-server-unit--top {
+  top: 10px;
+  width: 100px; height: 42px;
+  z-index: 4;
+}
+.about-server-unit--mid-left {
+  top: 50px; left: 10px;
+  width: 90px; height: 44px;
+  z-index: 3;
+}
+.about-server-unit--mid-right {
+  top: 50px; right: 10px;
+  width: 90px; height: 44px;
+  z-index: 3;
+}
+.about-server-unit--base {
+  bottom: 18px;
+  width: 160px; height: 46px;
+  z-index: 2;
+}
+
+.about-server-face {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.about-server-leds {
+  display: flex;
+  gap: 4px;
+}
+.about-led {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+}
+.about-led--cyan {
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+.about-led--blue {
+  background: #0284c7;
+  box-shadow: 0 0 4px #0284c7;
+}
+.about-server-vents {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5px;
+  width: 40px;
+}
+.about-server-vents span {
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(56,189,248,0.35);
+}
+
+/* Server Platform */
+.about-server-platform {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 240px; height: 50px;
+  pointer-events: none;
+}
+.about-server-holo-ring {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) perspective(300px) rotateX(72deg);
+  border-radius: 50%;
+  border: 1.5px solid #38bdf8;
+  box-shadow: 0 0 16px #38bdf8, inset 0 0 10px rgba(56,189,248,0.4);
+}
+.about-server-holo-ring--outer {
+  bottom: 2px;
+  width: 230px; height: 60px;
+}
+.about-server-holo-ring--inner {
+  bottom: 8px;
+  width: 170px; height: 44px;
+  border-color: rgba(56,189,248,0.5);
+}
+.about-server-floor-glow {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 260px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(56,189,248,0.35) 0%, transparent 70%);
+  filter: blur(14px);
+}
+
+/* ── Floating UI Glass Cards ── */
+.about-floating-card {
+  position: absolute;
+  z-index: 12;
+  border-radius: 10px;
+  border: 1px solid rgba(56,189,248,0.5);
+  background: rgba(8, 28, 62, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 14px rgba(56,189,248,0.3);
+}
+.about-floating-card--left {
+  left: -8px; top: 38%;
+  animation: floatOrb 5s ease-in-out infinite 0.5s;
+}
+.about-floating-card--right {
+  right: -8px; top: 46%;
+  animation: floatOrb 6s ease-in-out infinite 1.8s;
+}
+
+/* Floating 3D Micro Cubes */
+.about-floating-cube {
+  position: absolute;
+  width: 14px; height: 14px;
+  background: linear-gradient(135deg, rgba(56,189,248,0.7), rgba(1,118,211,0.5));
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 12px rgba(56,189,248,0.6);
+  transform: rotate(45deg);
+  z-index: 12;
+}
+.about-floating-cube--1 {
+  left: 0; top: 68%;
+  animation: floatOrb 6.5s ease-in-out infinite 1.2s;
+}
+.about-floating-cube--2 {
+  right: 18px; top: 82%;
+  width: 10px; height: 10px;
+  animation: floatOrb 5s ease-in-out infinite 2.5s;
 }
 
 /* ════════════════════════════════════════════════════════════════
-   GLOBAL NAVBAR DARK MODE ENHANCEMENTS
-   (applied on top of existing nav-pill when page scrolled into
-    dark sections – add extra depth)
+   KEYFRAMES
 ════════════════════════════════════════════════════════════════ */
-/* Extra outer glow on active nav link */
-.nav-link--active .nav-active-bg {
-  box-shadow: 0 0 14px rgba(23,105,209,0.20);
+@keyframes idCardFloat {
+  0%,100% { transform: perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px); }
+  50%      { transform: perspective(800px) rotateX(0deg) rotateY(0deg) translateY(-8px); }
 }
 
-/* ════════════════════════════════════════════════════════════════
-   ABOUT HEADING TRIGGER via AOS parent
-════════════════════════════════════════════════════════════════ */
-[data-aos].aos-animate .about-heading::after { width: 100%; }
-
-/* ════════════════════════════════════════════════════════════════
-   KEYFRAMES – premium additions
-════════════════════════════════════════════════════════════════ */
-
-/* Profile card gentle float */
-@keyframes profileFloat {
-  0%,100% { translate: 0 0px; }
-  50%      { translate: 0 -8px; }
+@keyframes cloudFloat3D {
+  0%,100% { transform: translateY(0px) scale(1); }
+  50%      { transform: translateY(-7px) scale(1.02); }
 }
 
-/* Cloud shape float */
-@keyframes cloudFloat {
+@keyframes floatOrb {
   0%,100% { transform: translateY(0px); }
-  50%      { transform: translateY(-6px); }
+  50%      { transform: translateY(-8px); }
 }
 
-/* Background glow pulse */
-@keyframes aboutGlowPulse {
-  0%,100% { opacity: 0.65; transform: scale(1) translateX(-50%); }
-  50%      { opacity: 1;    transform: scale(1.08) translateX(-50%); }
+@keyframes beamStream {
+  0%   { top: 0; opacity: 0; }
+  30%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
-/* For non-translateX glows */
-.about-bg-glow--left  { animation-name: aboutGlowPulseSimple; }
-.about-bg-glow--right { animation-name: aboutGlowPulseSimple; }
+
+@keyframes pedestalGlowBreathe {
+  0%,100% { opacity: 0.6; transform: scale(1) translateX(-50%); }
+  50%      { opacity: 1;   transform: scale(1.1) translateX(-50%); }
+}
+
+@keyframes orbitSpin1 {
+  0%   { transform: translateX(-50%) rotateX(68deg) rotateY(-18deg) rotateZ(0deg); }
+  100% { transform: translateX(-50%) rotateX(68deg) rotateY(-18deg) rotateZ(360deg); }
+}
+
 @keyframes aboutGlowPulseSimple {
-  0%,100% { opacity: 0.60; }
+  0%,100% { opacity: 0.6; }
   50%      { opacity: 1; }
 }
 
-/* Particle float */
 @keyframes aboutPtFloat {
-  0%,100% { translate: 0 0; opacity: 0.28; }
-  50%      { translate: 0 -14px; opacity: 0.70; }
+  0%,100% { translate: 0 0; opacity: 0.3; }
+  50%      { translate: 0 -16px; opacity: 0.75; }
 }
 
-/* Card edge glow breathe */
 @keyframes cardEdgeGlow {
   0%,100% { opacity: 0.55; }
   50%      { opacity: 1; }
 }
 
-/* Reflective sheen sweep */
 @keyframes sheenSweep {
   0%   { transform: translateX(-120%); opacity: 0; }
   8%   { opacity: 1; }
@@ -1376,55 +1679,56 @@ body {
   100% { transform: translateX(-120%); opacity: 0; }
 }
 
-/* Status dot pulse */
 @keyframes dotPulse {
-  0%,100% { r: 5; opacity: 0.85; }
-  50%      { r: 6.5; opacity: 1; filter: drop-shadow(0 0 4px #38BDF8); }
-}
-
-/* Skills heading shimmer text */
-@keyframes textShimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
+  0%,100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 0 6px #38bdf8); }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   REDUCED MOTION – extended to cover new elements
+   REDUCED MOTION
 ════════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  .about-profile-card,
-  .about-cloud-float,
-  .about-cloud-glow,
-  .about-profile-glow,
+  .about-id-card,
+  .about-3d-cloud,
+  .about-orbit-ring,
+  .about-orbit-node,
+  .about-floating-card,
+  .about-floating-cube,
+  .about-pedestal-glow,
   .about-bg-glow,
   .about-particles span,
   .about-dot-pulse,
-  .about-profile-sheen,
-  .about-profile-card-glow,
-  .skill-card-shimmer {
+  .about-id-card-sheen,
+  .about-id-card-glow,
+  .about-beam-particle {
     animation: none !important;
     transition: none !important;
   }
-  .about-profile-card { transform: rotate(-3deg) !important; }
-  .about-tech-pill:hover,
-  .skill-badge:hover,
-  .skill-card:hover { transform: none !important; }
+  .about-skill-pill:hover { transform: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   MOBILE ADJUSTMENTS for new effects
+   RESPONSIVE ADJUSTMENTS
 ════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .about-infra-scene {
+    margin-top: 2rem;
+  }
+}
+
 @media (max-width: 767px) {
-  .about-profile-card {
-    width: 240px;
+  .about-id-card {
+    width: 220px;
+    padding: 10px;
     animation-duration: 8s;
   }
-  .about-bg-glow--left  { width: 200px; height: 200px; filter: blur(60px); }
-  .about-bg-glow--right { width: 220px; height: 220px; filter: blur(60px); }
+  .about-orbit-ring--1 { width: 270px; }
+  .about-orbit-ring--2 { display: none; }
+  .about-bg-glow--left  { width: 220px; height: 220px; filter: blur(60px); }
+  .about-bg-glow--right { width: 240px; height: 240px; filter: blur(60px); }
   .about-particles span:nth-child(n+4) { display: none; }
-  .about-tech-pill:hover { transform: none; }
-  .skill-badge:hover     { transform: none; }
-  .skill-card:hover      { transform: translateY(-3px); }
-  .about-profile-card:hover { transform: rotate(-3deg) scale(1.01) !important; }
+  .about-skill-pill:hover { transform: none; }
+  .about-id-card:hover { transform: none !important; }
 }
+
 
