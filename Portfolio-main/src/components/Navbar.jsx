@@ -4,12 +4,23 @@ import { personalInfo } from '../data/portfolioData';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const scrollY = window.scrollY + 120;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollY) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -17,53 +28,83 @@ const Navbar = () => {
   const hireMeMailto = `mailto:sinegas1652@gmail.com?subject=Portfolio Inquiry&body=Hello Sinega,%0D%0A%0D%0AI came across your portfolio and would like to discuss an opportunity with you.%0D%0A%0D%0ALooking forward to hearing from you.%0D%0ABest Regards,`;
 
   return (
-    <nav 
-      className={`hero-glass-nav fixed left-1/2 top-3 z-50 w-[calc(100%-1.5rem)] max-w-[1280px] -translate-x-1/2 rounded-2xl border transition-all duration-300 ${
+    <nav
+      className={`nav-glass-wrap fixed left-1/2 top-4 z-[999] -translate-x-1/2 transition-all duration-500 ${
         isScrolled
-          ? 'border-white/80 bg-white/80 py-1.5 shadow-[0_12px_36px_rgba(23,105,209,0.12)] backdrop-blur-[18px]'
-          : 'border-white/60 bg-white/60 py-1.5 shadow-[0_8px_28px_rgba(23,105,209,0.08)] backdrop-blur-[18px]'
+          ? 'nav-glass-wrap--scrolled'
+          : ''
       }`}
+      aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+      <div className="nav-glass-inner flex items-center justify-between px-5 py-2.5 md:px-7">
+
         {/* Logo */}
-        <a href="#" className="flex min-h-11 items-center text-[#0B2345] text-2xl font-black tracking-tight whitespace-nowrap">
-          {personalInfo.brandName}<span className="text-[#1769D1]">.</span>
+        <a href="#home" className="nav-logo group flex items-center gap-2 whitespace-nowrap">
+          <span className="nav-logo-mark" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect width="28" height="28" rx="8" fill="url(#navLogoGrad)" />
+              <path d="M8 10h12M8 14h8M8 18h10" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+              <defs>
+                <linearGradient id="navLogoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#3BAEFF" />
+                  <stop offset="1" stopColor="#1355C0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span className="text-xl font-black tracking-tight text-[#0B2345]">
+            {personalInfo.brandName}<span className="text-[#1769D1]">.</span>
+          </span>
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link} 
-              href={`#${link.toLowerCase()}`}
-              className={`font-medium relative group transition-colors duration-300 ${
-                link === 'Home' ? 'text-[#1769D1]' : 'text-[#0B2345] hover:text-[#1769D1]'
-              }`}
-            >
-              {link}
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#1769D1] transition-all duration-300 ${
-                link === 'Home' ? 'w-full' : 'w-0 group-hover:w-full'
-              }`}></span>
-            </a>
-          ))}
+        <div className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => {
+            const sectionId = link.toLowerCase();
+            const isActive = activeSection === sectionId;
+            return (
+              <a
+                key={link}
+                href={`#${sectionId}`}
+                className={`nav-link relative px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+                  isActive
+                    ? 'nav-link--active text-[#1769D1]'
+                    : 'text-[#0B2345]/75 hover:text-[#1769D1]'
+                }`}
+              >
+                {isActive && (
+                  <span className="nav-active-chip absolute inset-0 rounded-lg bg-[#1769D1]/10 backdrop-blur-sm" aria-hidden="true" />
+                )}
+                <span className="relative z-10">{link}</span>
+                {isActive && (
+                  <span className="absolute bottom-0.5 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-[#1769D1]" aria-hidden="true" />
+                )}
+              </a>
+            );
+          })}
         </div>
 
         {/* Hire Me Button */}
         <div className="hidden md:block">
-          <a 
+          <a
             href={hireMeMailto}
-            className="px-6 py-2.5 rounded-full bg-[#1769D1] text-white font-semibold hover:bg-[#0d4fa8] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            className="nav-hire-btn inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold text-white transition-all duration-300"
           >
             Hire Me
+            <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 12h14m-7-7 7 7-7 7" />
+            </svg>
           </a>
         </div>
 
         {/* Mobile Hamburger */}
-        <button 
+        <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden min-h-11 min-w-11 text-[#0B2345] p-2"
+          className="flex h-11 w-11 items-center justify-center rounded-xl text-[#0B2345] transition-colors hover:bg-[#1769D1]/10 md:hidden"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -74,28 +115,34 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div 
-        className={`md:hidden absolute top-full left-0 w-full transition-all duration-300 overflow-hidden bg-white/95 backdrop-blur-md shadow-lg ${
-          isOpen ? 'max-h-screen py-4 opacity-100' : 'max-h-0 opacity-0'
+      <div
+        className={`nav-mobile-menu overflow-hidden transition-all duration-300 md:hidden ${
+          isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="flex flex-col px-6 space-y-4">
-          {navLinks.map((link) => (
-            <a 
-              key={link} 
-              href={`#${link.toLowerCase()}`}
-              onClick={() => setIsOpen(false)}
-              className={`flex min-h-11 items-center font-bold text-lg border-b border-gray-200 pb-2 transition-colors ${
-                link === 'Home' ? 'text-[#1769D1]' : 'text-[#0B2345] hover:text-[#1769D1]'
-              }`}
-            >
-              {link}
-            </a>
-          ))}
-          <a 
+        <div className="flex flex-col gap-1 px-5 pb-4 pt-2">
+          {navLinks.map((link) => {
+            const sectionId = link.toLowerCase();
+            const isActive = activeSection === sectionId;
+            return (
+              <a
+                key={link}
+                href={`#${sectionId}`}
+                onClick={() => setIsOpen(false)}
+                className={`flex min-h-11 items-center rounded-xl px-4 font-semibold transition-all duration-200 ${
+                  isActive
+                    ? 'bg-[#1769D1]/12 text-[#1769D1]'
+                    : 'text-[#0B2345]/80 hover:bg-[#1769D1]/8 hover:text-[#1769D1]'
+                }`}
+              >
+                {link}
+              </a>
+            );
+          })}
+          <a
             href={hireMeMailto}
-            onClick={() => setIsOpen(false)} 
-            className="mt-4 px-6 py-3 rounded-full bg-[#1769D1] text-white font-semibold text-center block hover:bg-[#0d4fa8] transition-all"
+            onClick={() => setIsOpen(false)}
+            className="nav-hire-btn mt-2 flex min-h-11 items-center justify-center rounded-full text-sm font-bold text-white"
           >
             Hire Me
           </a>
