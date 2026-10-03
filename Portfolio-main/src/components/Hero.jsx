@@ -41,19 +41,19 @@ const featureItems = [
 /* ─── GLASS SPHERES DATA ────────────────────────────────────────── */
 const SPHERES = [
   /* large left cluster */
-  { s: 96,  top: '5%',  left: '2%',   dur: '9s',  d: '0s'    },
-  { s: 58,  top: '20%', left: '0.5%', dur: '11s', d: '-2.4s' },
-  { s: 74,  top: '64%', left: '1.5%', dur: '8s',  d: '-1.2s' },
-  { s: 46,  top: '80%', left: '11%',  dur: '12s', d: '-3.7s' },
+  { s: 96,  top: '5%',  left: '2%',   dur: '9s',  d: '0s',    factor: -12 },
+  { s: 58,  top: '20%', left: '0.5%', dur: '11s', d: '-2.4s', factor: -8  },
+  { s: 74,  top: '64%', left: '1.5%', dur: '8s',  d: '-1.2s', factor: -14 },
+  { s: 46,  top: '80%', left: '11%',  dur: '12s', d: '-3.7s', factor: -6  },
   /* right edge */
-  { s: 68,  top: '2%',  right: '7%',  dur: '10s', d: '-1.9s' },
-  { s: 40,  top: '16%', right: '1%',  dur: '13s', d: '-0.7s' },
-  { s: 54,  top: '69%', right: '3%',  dur: '9s',  d: '-4.4s' },
-  { s: 38,  top: '46%', right: '0.5%',dur: '11s', d: '-2.9s' },
+  { s: 68,  top: '2%',  right: '7%',  dur: '10s', d: '-1.9s', factor: 10  },
+  { s: 40,  top: '16%', right: '1%',  dur: '13s', d: '-0.7s', factor: 7   },
+  { s: 54,  top: '69%', right: '3%',  dur: '9s',  d: '-4.4s', factor: 12  },
+  { s: 38,  top: '46%', right: '0.5%',dur: '11s', d: '-2.9s', factor: 5   },
   /* scattered mid */
-  { s: 30,  top: '36%', left: '6%',   dur: '10s', d: '-4.1s' },
-  { s: 24,  top: '11%', left: '37%',  dur: '8s',  d: '-1.6s' },
-  { s: 20,  top: '54%', left: '45%',  dur: '12s', d: '-3.3s' },
+  { s: 30,  top: '36%', left: '6%',   dur: '10s', d: '-4.1s', factor: -5  },
+  { s: 24,  top: '11%', left: '37%',  dur: '8s',  d: '-1.6s', factor: -4  },
+  { s: 20,  top: '54%', left: '45%',  dur: '12s', d: '-3.3s', factor: 4   },
 ];
 
 /* ─── BACKGROUND CLOUDS ─────────────────────────────────────────── */
@@ -83,40 +83,64 @@ const Platform = () => (
 );
 
 /* ─── FLOATING UI CARDS ─────────────────────────────────────────── */
-const UiCards = () => (
+const UiCards = ({ px, py }) => (
   <>
     {/* ① Blue cloud card – upper-left */}
-    <div className="ui-card card-cloud" aria-hidden="true">
+    <div
+      className="ui-card card-cloud"
+      aria-hidden="true"
+      style={{ transform: `translate3d(${px(16)},${py(14)},0)` }}
+    >
       <div className="card-cloud-icon">
         <SfCloud white size={32}/>
       </div>
+      <div className="card-glass-sheen" />
     </div>
 
     {/* ② Salesforce logo – upper-right (OUTSIDE / above frame) */}
-    <div className="ui-card card-sf-top" aria-hidden="true">
+    <div
+      className="ui-card card-sf-top"
+      aria-hidden="true"
+      style={{ transform: `translate3d(${px(12)},${py(10)},0)` }}
+    >
       <SfCloud size={20}/>
       <span className="card-sf-label">salesforce</span>
+      <div className="card-glass-sheen" />
     </div>
 
     {/* ③ Salesforce logo – mid-right */}
-    <div className="ui-card card-sf-mid" aria-hidden="true">
+    <div
+      className="ui-card card-sf-mid"
+      aria-hidden="true"
+      style={{ transform: `translate3d(${px(14)},${py(11)},0) translateY(-50%)` }}
+    >
       <SfCloud size={20}/>
       <span className="card-sf-label">salesforce</span>
+      <div className="card-glass-sheen" />
     </div>
 
     {/* ④ Analytics bar card – lower-left */}
-    <div className="ui-card card-analytics" aria-hidden="true">
+    <div
+      className="ui-card card-analytics"
+      aria-hidden="true"
+      style={{ transform: `translate3d(${px(18)},${py(15)},0)` }}
+    >
       <svg width="36" height="28" viewBox="0 0 24 20" fill="none" stroke="#1769D1" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 18V6M4 18h17"/>
-        <rect x="7" y="9" width="2.5" height="9" rx="0.5" fill="#1769D1" stroke="none"/>
-        <rect x="11.5" y="5" width="2.5" height="13" rx="0.5" fill="#1769D1" stroke="none"/>
-        <rect x="16" y="11" width="2.5" height="7" rx="0.5" fill="#1769D1" stroke="none"/>
+        <rect x="7" y="9" width="2.5" height="9" rx="0.5" fill="#1769D1" stroke="none" className="analytics-bar-1" />
+        <rect x="11.5" y="5" width="2.5" height="13" rx="0.5" fill="#1769D1" stroke="none" className="analytics-bar-2" />
+        <rect x="16" y="11" width="2.5" height="7" rx="0.5" fill="#1769D1" stroke="none" className="analytics-bar-3" />
       </svg>
       <span className="card-analytics-label">Analytics</span>
+      <div className="card-glass-sheen" />
     </div>
 
     {/* ⑤ Vertical icon panel – far right */}
-    <div className="ui-icon-panel" aria-hidden="true">
+    <div
+      className="ui-icon-panel"
+      aria-hidden="true"
+      style={{ transform: `translate3d(${px(8)},${py(7)},0)` }}
+    >
       <div className="uip-btn uip-btn--active">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="0">
           <path d="M13 2 5 13h6l-1 9 9-12h-6l1-8Z"/>
@@ -125,7 +149,7 @@ const UiCards = () => (
       <div className="uip-btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1769D1" strokeWidth="1.6" strokeLinecap="round">
           <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
       </div>
       <div className="uip-btn">
@@ -156,26 +180,49 @@ const Hero = () => {
     if (reduceMotion || !window.matchMedia('(min-width:1024px) and (pointer:fine)').matches) return;
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(() => {
-      setMouse({ x: (e.clientX / window.innerWidth - 0.5) * 2, y: (e.clientY / window.innerHeight - 0.5) * 2 });
+      setMouse({
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      });
     });
   }, [reduceMotion]);
 
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    return () => { window.removeEventListener('mousemove', onMouseMove); if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [onMouseMove]);
 
-  const stopReel = () => { const v = videoRef.current; if (!v) return; v.pause(); v.currentTime = 0; setIsPlaying(false); };
+  const stopReel = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+    setIsPlaying(false);
+  };
+
   const toggleVideo = (e) => {
     e.stopPropagation();
     const v = videoRef.current;
     if (!v) return;
-    if (v.paused) { v.muted = false; v.volume = 1; v.currentTime = 0; v.play(); setIsPlaying(true); }
-    else { stopReel(); }
+    if (v.paused) {
+      v.muted = false;
+      v.volume = 1;
+      v.currentTime = 0;
+      v.play();
+      setIsPlaying(true);
+    } else {
+      stopReel();
+    }
   };
 
   const px = (m) => reduceMotion ? '0px' : `${mouse.x * m}px`;
   const py = (m) => reduceMotion ? '0px' : `${mouse.y * m}px`;
+  const tiltX = reduceMotion ? 0 : -mouse.y * 6; // max 6 deg
+  const tiltY = reduceMotion ? 0 : mouse.x * 7;  // max 7 deg
+
   const emailHref = `mailto:${personalInfo.emails.primary}`;
 
   return (
@@ -187,6 +234,8 @@ const Hero = () => {
         <div className="hero-bg-base"/>
         {/* atmosphere blue glow */}
         <div className="hero-bg-atmo"/>
+        {/* mesh auroras */}
+        <div className="hero-bg-mesh"/>
         {/* clouds */}
         {CLOUDS.map(c => <div key={c} className={`vol-cloud ${c}`}/>)}
         {/* arc rings */}
@@ -201,14 +250,22 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* ═══ SPHERES ═══ */}
+      {/* ═══ 3D SPHERES WITH PARALLAX ═══ */}
       <div className="hero-spheres" aria-hidden="true">
         {SPHERES.map((sp, i) => (
-          <div key={i} className="glass-sphere" style={{
-            width: sp.s, height: sp.s,
-            top: sp.top, left: sp.left, right: sp.right,
-            '--sp-d': sp.d, '--sp-dur': sp.dur,
-          }}/>
+          <div
+            key={i}
+            className="glass-sphere"
+            style={{
+              width: sp.s, height: sp.s,
+              top: sp.top, left: sp.left, right: sp.right,
+              '--sp-d': sp.d, '--sp-dur': sp.dur,
+              transform: `translate3d(${px(sp.factor)},${py(sp.factor)},0)`,
+              transition: 'transform 800ms cubic-bezier(0.2,0.8,0.2,1)',
+            }}
+          >
+            <div className="sphere-specular" />
+          </div>
         ))}
       </div>
 
@@ -248,14 +305,15 @@ const Hero = () => {
 
           {/* CTAs */}
           <div className="cta-row">
-            <a href="#projects" className="btn-primary">
-              Explore My Salesforce Work
+            <a href="#projects" className="btn-primary group">
+              <span>Explore My Salesforce Work</span>
               <svg className="btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 12h14m-7-7 7 7-7 7"/>
               </svg>
+              <div className="btn-glow-shimmer" aria-hidden="true" />
             </a>
             <a href="#contact" className="btn-secondary">
-              Contact Me
+              <span>Contact Me</span>
               <svg className="btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 12h14m-7-7 7 7-7 7"/>
               </svg>
@@ -279,20 +337,26 @@ const Hero = () => {
         <div className="hero-scene" data-aos="fade-up" data-aos-delay="100">
           <div
             className="scene-wrap"
-            style={{ transform: `translate3d(${px(5)},${py(4)},0)`, transition: 'transform 700ms cubic-bezier(0.2,0.8,0.2,1)' }}
+            style={{
+              transform: `translate3d(${px(6)},${py(5)},0)`,
+              transition: 'transform 700ms cubic-bezier(0.2,0.8,0.2,1)',
+            }}
           >
             {/* Atmospheric orbit lines */}
             <div className="scene-orbits" aria-hidden="true">
               <svg className="orbit-svg" viewBox="0 0 580 520" fill="none">
-                <ellipse cx="290" cy="260" rx="274" ry="226" stroke="rgba(23,105,209,0.14)" strokeWidth="1" strokeDasharray="520 140"/>
-                <ellipse cx="290" cy="260" rx="218" ry="174" stroke="rgba(23,105,209,0.10)" strokeWidth="1" strokeDasharray="380 120"/>
+                <ellipse cx="290" cy="260" rx="274" ry="226" stroke="rgba(23,105,209,0.18)" strokeWidth="1.5" strokeDasharray="520 140"/>
+                <ellipse cx="290" cy="260" rx="218" ry="174" stroke="rgba(23,105,209,0.14)" strokeWidth="1.2" strokeDasharray="380 120"/>
               </svg>
             </div>
 
-            {/* ── Glass profile frame ── */}
+            {/* ── Glass profile frame with 3D Perspective Tilt ── */}
             <div
               className="glass-frame"
-              style={{ transform: `translate3d(${px(8)},${py(6)},0)`, transition: 'transform 900ms cubic-bezier(0.2,0.8,0.2,1)' }}
+              style={{
+                transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${px(8)},${py(6)},0)`,
+                transition: 'transform 600ms cubic-bezier(0.2,0.8,0.2,1)',
+              }}
             >
               {/* outer glow border */}
               <div className="gf-glow" aria-hidden="true"/>
@@ -325,26 +389,30 @@ const Hero = () => {
                 <div className="gf-sheen" aria-hidden="true"/>
               </div>
 
-              {/* ── Floating UI Cards – positioned relative to frame ── */}
-              <div className="frame-cards" aria-hidden="true"
-                style={{ transform: `translate3d(${px(12)},${py(9)},0)`, transition: 'transform 950ms cubic-bezier(0.2,0.8,0.2,1)' }}>
-                <UiCards/>
+              {/* ── Floating UI Cards – positioned with multi-layer depth ── */}
+              <div className="frame-cards" aria-hidden="true">
+                <UiCards px={px} py={py} />
               </div>
             </div>
 
             {/* ── Platform / Pedestal ── */}
             <Platform/>
 
-            {/* ── Play Reel button ── */}
+            {/* ── Play Reel button with 3D Parallax ── */}
             <button
               type="button"
               onClick={toggleVideo}
               className="play-btn"
               aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
+              style={{
+                transform: `translate3d(${px(18)},${py(15)},0)`,
+                transition: 'transform 800ms cubic-bezier(0.2,0.8,0.2,1)',
+              }}
             >
               <span className="play-orb">
                 <span className="play-ring play-ring--1" aria-hidden="true"/>
                 <span className="play-ring play-ring--2" aria-hidden="true"/>
+                <span className="play-ring play-ring--3" aria-hidden="true"/>
                 {isPlaying ? (
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="white" aria-hidden="true">
                     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
