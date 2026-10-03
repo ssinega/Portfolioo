@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import introVideo from '../assets/sinega-intro.mp4';
@@ -114,15 +114,15 @@ const Hero = () => {
         </div>
 
         <div className="relative z-20 max-w-xl lg:pb-12" data-aos="fade-up">
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.28em] text-[#1769D1]">Cloud-ready portfolio</p>
-          <h1 className="mb-5 text-[clamp(2.75rem,6vw,5.75rem)] font-black leading-[0.95] text-[#0B2345]">
-            {heroContent.greeting},
+          <h1 className="mb-5 text-[clamp(2.75rem,4.5vw,4.5rem)] font-black leading-[0.95] text-[#0B2345]">
+            {heroContent.greeting}
           </h1>
-          <h2 className="mb-7 text-[clamp(2.1rem,4vw,4.5rem)] font-black leading-[1.02] text-[#1769D1]">
-            <span className="block">Salesforce Administrator and Developer |</span>
-            <span className="block">Data Analyst |</span>
-            <span className="block">Frontend developer</span>
+          <h2 className="mb-4 max-w-[600px] break-words text-[clamp(2rem,3vw,3rem)] font-black leading-[1.02] text-[#1769D1]">
+            {heroContent.title}
           </h2>
+          <p className="mb-5 text-sm font-bold leading-relaxed text-[#0B2345]/75 md:text-base">
+            {heroContent.credential}
+          </p>
           <p className="mb-9 max-w-[540px] text-base font-medium leading-[1.7] text-[#0B2345]/85 md:text-lg">
             {heroContent.subtitle}
           </p>

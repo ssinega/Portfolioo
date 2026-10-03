@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { internshipsList } from '../data/portfolioData';
+﻿import { internshipsList } from '../data/portfolioData';
 
 const InternshipCard = ({ intern, index }) => (
   <div 
@@ -23,31 +22,9 @@ const InternshipCard = ({ intern, index }) => (
         {intern.organization}
       </p>
 
-      {/* Skills gained */}
-      <div className="mb-6">
-        <h4 className="text-white/60 text-xs font-bold uppercase tracking-wider mb-2">Skills Gained:</h4>
-        <ul className="text-white/90 text-sm font-medium space-y-1 pl-4 list-disc">
-          {intern.skills.map((skill, i) => (
-            <li key={i}>{skill}</li>
-          ))}
-        </ul>
-      </div>
+      <p className="mb-6 text-sm leading-relaxed text-white/80">{intern.description}</p>
     </div>
 
-    {/* Technologies used */}
-    <div className="pt-4 border-t border-white/10">
-      <h4 className="text-white/60 text-xs font-bold uppercase tracking-wider mb-3">Technologies:</h4>
-      <div className="flex flex-wrap gap-2">
-        {intern.tech.map((t) => (
-          <span 
-            key={t}
-            className="px-3 py-1 text-xs font-mono font-bold text-white bg-white/10 rounded-full border border-white/10 hover:bg-white/20 transition-all"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-    </div>
   </div>
 );
 
@@ -70,12 +47,12 @@ const Internships = () => {
             Work Experience
           </h2>
           <p className="text-[#A9BDD0] text-base md:text-lg font-semibold max-w-lg mx-auto">
-            Practical internships where I applied engineering principles and built real-world assets.
+            Cloud and AI internships alongside my primary focus on Salesforce.
           </p>
         </div>
 
         {/* Internship Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {internshipsList.map((intern, index) => (
             <InternshipCard key={intern.organization} intern={intern} index={index} />
           ))}

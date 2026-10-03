@@ -1,14 +1,15 @@
-﻿import React from 'react';
-import { certificates } from '../data/portfolioData';
+﻿import { certificates } from '../data/portfolioData';
 
 const CertificateCard = ({ cert, aosDelay }) => (
   <a
-    href={cert.url}
-    target="_blank"
-    rel="noopener noreferrer"
+    href={cert.url || undefined}
+    target={cert.url ? "_blank" : undefined}
+    rel={cert.url ? "noopener noreferrer" : undefined}
+    aria-disabled={!cert.url}
+    tabIndex={cert.url ? undefined : -1}
     data-aos="zoom-in"
     data-aos-delay={aosDelay}
-    className="bg-black/20 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:border-white/25 hover:scale-105 hover:shadow-[0_15px_40px_rgba(0,0,0,0.3)] transition-all duration-500 cursor-pointer group block"
+    className={`bg-black/20 backdrop-blur-sm rounded-2xl p-5 border border-white/10 transition-all duration-500 group block ${cert.url ? 'cursor-pointer hover:border-white/25 hover:scale-105 hover:shadow-[0_15px_40px_rgba(0,0,0,0.3)]' : 'cursor-not-allowed opacity-60'}`}
   >
     <div className="flex items-start gap-4">
       <span className="text-2xl mt-0.5 group-hover:scale-110 transition-transform duration-300">{cert.icon}</span>
@@ -61,7 +62,7 @@ const Certificates = () => {
         <div data-aos="fade-up" data-aos-delay="700" className="flex justify-center">
           <button
             type="button"
-            onClick={() => certificates.featured.forEach(cert => window.open(cert.url, '_blank', 'noopener,noreferrer'))}
+            onClick={() => certificates.featured.filter((cert) => cert.url).forEach((cert) => window.open(cert.url, '_blank', 'noopener,noreferrer'))}
             className="flex items-center gap-3 px-8 py-3.5 rounded-full bg-white text-black font-bold text-base hover:bg-gray-100 hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group"
           >
             <svg className="w-5 h-5 text-[#1769D1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

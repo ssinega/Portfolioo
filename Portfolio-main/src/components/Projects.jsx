@@ -1,4 +1,3 @@
-import React from 'react';
 import { projects, socialLinks } from '../data/portfolioData';
 
 const GitHubIcon = () => (
@@ -38,13 +37,24 @@ const ProjectCard = ({ project, aosDelay }) => (
       {/* Number + Title */}
       <div className="flex items-baseline gap-4 mb-4">
         <span className="text-5xl font-black text-white/10 font-serif italic">{project.number}</span>
-        <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight">{project.title}</h3>
+        <h3 className="break-words text-2xl font-black text-white tracking-tight md:text-3xl">{project.title}</h3>
       </div>
 
       {/* Description */}
       <p className="text-white/60 text-sm md:text-base leading-relaxed mb-6 max-w-2xl font-medium">
         {project.description}
       </p>
+
+      {project.highlights && (
+        <ul className="mb-7 grid gap-3 text-sm leading-relaxed text-white/75 md:grid-cols-2">
+          {project.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-3">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#38BDF8]" />
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* Tech Tags */}
       <div className="flex flex-wrap gap-2 mb-8">
@@ -74,19 +84,15 @@ const ProjectCard = ({ project, aosDelay }) => (
         )}
 
         {/* Live Demo (single) */}
-        {project.links.demo !== undefined && (
+        {project.links.demo && (
           <a 
-            href={project.links.demo || '#'}
-            target={project.links.demo ? "_blank" : undefined}
-            rel={project.links.demo ? "noopener noreferrer" : undefined}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-              project.links.demo 
-                ? 'bg-[#1769D1] text-white hover:bg-[#1769D1] hover:shadow-[0_0_20px_rgba(23,105,209,0.4)]' 
-                : 'bg-white/5 text-white/40 border border-white/10 cursor-not-allowed'
-            }`}
+            href={project.links.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full bg-[#1769D1] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#1769D1] hover:shadow-[0_0_20px_rgba(23,105,209,0.4)]"
           >
             <ExternalLinkIcon />
-            {project.links.demo ? 'Live Demo' : 'Demo Coming Soon'}
+            Live Demo
           </a>
         )}
 
@@ -134,7 +140,7 @@ const Projects = () => {
             Work that speaks <br className="hidden md:block" />for itself
           </h2>
           <p className="text-white/50 text-base md:text-lg max-w-lg font-medium leading-relaxed">
-            A selection of projects that showcase my expertise in full-stack development and modern architecture.
+            Salesforce-first CRM work, followed by projects in computer vision and AI.
           </p>
         </div>
 

@@ -1,7 +1,6 @@
-import React from 'react';
 import aboutPhoto from '../assets/about/yusuf-avatar.png';
 import salesforceLogo from '../assets/logos/salesforce.svg';
-import { aboutContent, personalInfo, technicalSkills } from '../data/portfolioData';
+import { aboutContent, personalInfo } from '../data/portfolioData';
 
 const CloudStackIcon = () => (
   <svg className="h-7 w-7" viewBox="0 0 40 40" fill="none" aria-hidden="true">
@@ -66,17 +65,11 @@ const CloudInfrastructure = () => (
 );
 
 const About = () => {
-  const cloudCategory = technicalSkills.categories.find((category) => category.title === 'Cloud & Databases');
-  const cloudDetails = cloudCategory?.skills
-    .filter((skill) => ['AWS', 'Azure Fundamentals'].includes(skill.name))
-    .map((skill) => (skill.name === 'Azure Fundamentals' ? 'Azure' : skill.name))
-    .join(' | ');
-
   const technologies = [
-    { name: 'Cloud', details: cloudDetails, icon: <CloudStackIcon /> },
-    { name: 'Java', details: 'Programming', icon: <CodeStackIcon label="J" /> },
-    { name: 'Python', details: 'Analytics', icon: <CodeStackIcon label="Py" /> },
-    { name: 'Salesforce', details: 'CRM Platform', icon: <SalesforceIcon /> },
+    { name: 'Salesforce Administration', details: 'CRM Configuration', icon: <SalesforceIcon /> },
+    { name: 'Service Cloud', details: 'Cases · Entitlements · SLAs', icon: <CloudStackIcon /> },
+    { name: 'Flow Automation', details: 'Record-Triggered · Screen Flows', icon: <CodeStackIcon label="F" /> },
+    { name: 'Agentforce', details: 'Salesforce AI', icon: <CodeStackIcon label="AI" /> },
   ];
 
   return (
@@ -114,10 +107,11 @@ const About = () => {
           <div data-aos="fade-up" data-aos-delay="150" className="max-w-2xl text-center lg:text-left">
             <p className="mb-4 text-sm font-bold uppercase tracking-[0.28em] text-[#38BDF8]">About me</p>
             <h2 className="mb-6 text-5xl font-black leading-none text-white md:text-6xl">{aboutContent.heading}</h2>
-            <p className="text-lg leading-[1.75] text-[#DCEEFF] md:text-xl">
-              Hi, my name is{' '}
-              <span className="font-black uppercase tracking-wide text-[#38BDF8]">{personalInfo.name}</span>, a Computer Science graduate focused on data analytics, software development, cloud computing, and Salesforce-based solutions.
-            </p>
+            <div className="space-y-4 text-base leading-[1.75] text-[#DCEEFF] md:text-lg">
+              {aboutContent.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
             <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               {aboutContent.techStack.map((item) => (
                 <span key={item} className="rounded-full border border-[#38BDF8]/25 bg-white/[0.045] px-4 py-2 text-sm font-bold text-[#DCEEFF]">
@@ -136,10 +130,10 @@ const About = () => {
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.28em] text-[#38BDF8]">Technical stack</p>
-              <h3 className="text-3xl font-black text-white md:text-4xl">Cloud, code, and CRM tools</h3>
+              <h3 className="text-3xl font-black text-white md:text-4xl">Salesforce-first technical stack</h3>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#DCEEFF]/75 md:text-right">
-              A focused stack from the existing portfolio, presented with the same cloud-computing visual language.
+              Administration, service workflows, automation, and Agentforce, supported by cloud and data skills.
             </p>
           </div>
 

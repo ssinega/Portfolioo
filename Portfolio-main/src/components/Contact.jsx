@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { personalInfo } from '../data/portfolioData';
+import { contactContent, personalInfo } from '../data/portfolioData';
 
 const Contact = () => {
   const ref = useRef(null);
@@ -63,10 +63,15 @@ const Contact = () => {
           data-aos="fade-up"
           className="bg-[#0B2345] w-full md:w-[85%] lg:w-[75%] p-8 md:p-16 text-white flex flex-col justify-between"
         >
-          <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-12">
-            <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-90">
-              Reach Me
+          <div className="mb-12 max-w-4xl">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#38BDF8]">Open to Salesforce opportunities</p>
+            <h2 className="mb-5 text-3xl font-black leading-tight md:text-5xl">{contactContent.heading}</h2>
+            <div className="space-y-3 text-sm leading-relaxed text-white/75 md:text-base">
+              {contactContent.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>
+            <p className="mt-5 border-l-2 border-[#38BDF8] pl-4 text-sm font-semibold leading-relaxed text-[#DCEEFF]">
+              {contactContent.openTo}
+            </p>
           </div>
 
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-12 md:gap-16 w-full">

@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { contentCreation } from '../data/portfolioData';
+﻿import { contentCreation } from '../data/portfolioData';
 
 const CreatorCard = ({ category, index }) => (
   <div 
@@ -24,18 +23,12 @@ const CreatorCard = ({ category, index }) => (
       </p>
     </div>
 
-    <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono tracking-wider font-bold text-white/40 group-hover:text-white transition-colors">
-      <span>View Reels</span>
-      <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-      </svg>
-    </div>
   </div>
 );
 
 const ContentCreator = () => {
   return (
-    <section id="creator" className="bg-[#061B3A] pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]">
+    <section id="career-focus" className="bg-[#061B3A] pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]">
       
       {/* Visual background lights */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1769D1]/5 rounded-full blur-[160px] pointer-events-none" />
