@@ -1,41 +1,48 @@
 import { technicalSkills } from '../data/portfolioData';
 
+const SkillBadge = ({ skill, index }) => (
+  <span
+    className="skill-badge"
+    style={{ transitionDelay: `${index * 30}ms` }}
+  >
+    {skill}
+  </span>
+);
+
 const SkillCard = ({ category, index }) => (
-  <div 
+  <div
     data-aos="fade-up"
     data-aos-delay={index * 100}
-    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:scale-[1.02] hover:border-[#38BDF8]/30 hover:shadow-[0_20px_50px_rgba(23,105,209,0.1)] transition-all duration-500"
+    className="skill-card group"
   >
-    <h3 className="text-white text-lg font-black tracking-tight mb-6 pb-2 border-b border-white/10 uppercase">
+    <h3 className="text-white text-lg font-black tracking-tight mb-6 pb-2 border-b border-white/10 uppercase skill-card-title">
       {category.title}
     </h3>
-    <div>
-      <div className="flex flex-wrap gap-2">
-        {category.skills.map((skill) => (
-          <span key={skill} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-sm font-semibold leading-snug text-white/80">
-            {skill}
-          </span>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-2">
+      {category.skills.map((skill, i) => (
+        <SkillBadge key={skill} skill={skill} index={i}/>
+      ))}
     </div>
+    {/* Inner shimmer */}
+    <div className="skill-card-shimmer" aria-hidden="true"/>
   </div>
 );
 
 const TechnicalSkills = () => {
   return (
     <section id="skills" className="bg-[#061B3A] pt-24 pb-28 px-6 md:px-12 w-full relative overflow-hidden font-sans">
-      {/* Background visual elements */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#1769D1]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#38BDF8]/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background radial glows */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#1769D1]/10 rounded-full blur-[120px] pointer-events-none"/>
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#38BDF8]/10 rounded-full blur-[120px] pointer-events-none"/>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        
+
         {/* Header */}
         <div data-aos="fade-up" className="mb-16 text-center">
           <div className="inline-block border border-white/20 rounded-full px-5 py-1.5 text-sm text-white/60 font-bold mb-6 shadow-sm bg-white/5 backdrop-blur-sm">
             Technical Stack
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 uppercase">
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 uppercase skills-heading">
             My Skillset
           </h2>
           <p className="text-white/50 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
@@ -46,7 +53,7 @@ const TechnicalSkills = () => {
         {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {technicalSkills.categories.map((category, index) => (
-            <SkillCard key={category.title} category={category} index={index} />
+            <SkillCard key={category.title} category={category} index={index}/>
           ))}
         </div>
 
